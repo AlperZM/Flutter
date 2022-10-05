@@ -22,12 +22,12 @@ class _TestAppState extends State<TestApp> {
 
       home: Scaffold(
         backgroundColor: Colors.lightBlueAccent,
-        
+        //appbar
         appBar: AppBar(
           backgroundColor: Colors.cyan,
           title: const Text("My Test App"),
         ),
-        
+        // body
         body: Container(
           width: 90,
           height: 60,
@@ -49,6 +49,7 @@ class _TestAppState extends State<TestApp> {
           child: const Text("Child ELement"),
         ),
         
+        //float action button
         floatingActionButton: FloatingActionButton(
           elevation: 10.0,
           child: const Icon(Icons.add),
