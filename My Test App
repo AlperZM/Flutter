@@ -61,13 +61,41 @@ class _TestAppState extends State<TestApp> {
                 ),
               ),
               ListTile(
-                title: Text("List item 1"),
+                title: Text("Friends"),
+                leading: Icon(Icons.people),
               ),
               ListTile(
-                title: Text("List item 2"),
+                title: Text("Contact"),
+                leading: Icon(Icons.mail),
+              ),
+              ListTile(
+                title: Text("Settings"),
+                leading: Icon(Icons.settings),
               ),
             ],
           ),
+        ),
+
+        //BOTTOM NAVİGATİON BAR
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: 0,
+          fixedColor: Colors.green,
+          backgroundColor: Colors.white,
+          items: const [
+            BottomNavigationBarItem(
+              label: "Home", 
+              icon: Icon(Icons.home),
+            ),
+            BottomNavigationBarItem(
+              label: "Searc",
+              icon: Icon(Icons.search),
+            ),
+            BottomNavigationBarItem(
+              label: "Profile",
+              icon: Icon(Icons.account_circle),
+            ),
+          ],
+          onTap: (int indexOfItem) {},
         ),
       ),
     );
