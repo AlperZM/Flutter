@@ -44,6 +44,31 @@ class _TestAppState extends State<TestApp> {
           child: const Icon(Icons.add),
           onPressed: () => {},
         ),
+
+        // drawer
+        drawer: Drawer(
+          child: ListView(
+            children: const <Widget>[
+              DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Colors.lightBlue,
+                ),
+                child: Text(
+                  "Menü, -DrawerHeader area-",
+                  style: TextStyle(
+                    fontSize: 20,
+                  ),
+                ),
+              ),
+              ListTile(
+                title: Text("List item 1"),
+              ),
+              ListTile(
+                title: Text("List item 2"),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
