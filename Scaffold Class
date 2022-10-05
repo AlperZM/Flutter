@@ -1,0 +1,9 @@
+//floatingActionButton
+// add this in scaffold after body
+floatingActionButton: FloatingActionButton(
+      elevation: 10.0,
+      child: const Icon(Icons.add),
+      onPressed: () {
+        // action on button press
+      },
+    ),
