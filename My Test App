@@ -4,7 +4,6 @@ void main() => runApp(const TestApp());
 
 class TestApp extends StatefulWidget {
   const TestApp({Key? key}) : super(key: key);
-
   @override
   _TestAppState createState() => _TestAppState();
 }
@@ -13,12 +12,22 @@ class _TestAppState extends State<TestApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      // MaterialApp props
+      title: "MyTestApp",
+      theme: ThemeData(primarySwatch: Colors.blue),
+      darkTheme: ThemeData(primarySwatch: Colors.cyan),
+      color: Colors.amberAccent,
+      supportedLocales: {const Locale("en", "")},
+      debugShowCheckedModeBanner: false,
+
       home: Scaffold(
         backgroundColor: Colors.lightBlueAccent,
+        
         appBar: AppBar(
           backgroundColor: Colors.cyan,
           title: const Text("My Test App"),
         ),
+        
         body: Container(
           width: 90,
           height: 60,
@@ -39,6 +48,7 @@ class _TestAppState extends State<TestApp> {
               ]),
           child: const Text("Child ELement"),
         ),
+        
         floatingActionButton: FloatingActionButton(
           elevation: 10.0,
           child: const Icon(Icons.add),
@@ -80,14 +90,16 @@ class _TestAppState extends State<TestApp> {
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: 0,
           fixedColor: Colors.green,
-          backgroundColor: Colors.white,
+          backgroundColor: Colors.black,
+          unselectedItemColor: Colors.white,
+          selectedLabelStyle: const TextStyle(fontSize: 18,),
           items: const [
             BottomNavigationBarItem(
-              label: "Home", 
+              label: "Home",
               icon: Icon(Icons.home),
             ),
             BottomNavigationBarItem(
-              label: "Searc",
+              label: "Search",
               icon: Icon(Icons.search),
             ),
             BottomNavigationBarItem(
