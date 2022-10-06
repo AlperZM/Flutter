@@ -63,7 +63,7 @@ class _TestAppState extends State<TestApp> {
             children: <Widget>[
               const DrawerHeader(
                 decoration: BoxDecoration(
-                 color: Colors.blue,
+                  color: Colors.blue,
                 ),
                 child: UserAccountsDrawerHeader(
                   accountName: Text("Ivan Doe",
