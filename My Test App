@@ -26,6 +26,22 @@ class _TestAppState extends State<TestApp> {
         appBar: AppBar(
           backgroundColor: Colors.cyan,
           title: const Text("My Test App"),
+          titleSpacing: 00.0,
+          centerTitle: true,
+          toolbarHeight: 60,
+          actions: <Widget>[
+            IconButton(
+            icon: const Icon(Icons.add),
+              tooltip: "Add",
+              onPressed: () {},
+            ),
+            IconButton(
+            icon: const Icon(Icons.settings),
+              tooltip: "Settings",
+              onPressed: () {},
+            ),
+          ],
+
         ),
         // body
         body: Container(
