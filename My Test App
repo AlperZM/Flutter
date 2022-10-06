@@ -48,7 +48,7 @@ class _TestAppState extends State<TestApp> {
               ]),
           child: const Text("Child ELement"),
         ),
-        
+
         //float action button
         floatingActionButton: FloatingActionButton(
           elevation: 10.0,
@@ -59,29 +59,53 @@ class _TestAppState extends State<TestApp> {
         // drawer
         drawer: Drawer(
           child: ListView(
-            children: const <Widget>[
-              DrawerHeader(
+            padding: const EdgeInsets.all(0), //padding drawer
+            children: <Widget>[
+              const DrawerHeader(
                 decoration: BoxDecoration(
-                  color: Colors.lightBlue,
+                 color: Colors.blue,
                 ),
-                child: Text(
-                  "Menü, -DrawerHeader area-",
-                  style: TextStyle(
-                    fontSize: 20,
+                child: UserAccountsDrawerHeader(
+                  accountName: Text("Ivan Doe",
+                      style: TextStyle(
+                        fontSize: 16,
+                      )),
+                  accountEmail: Text("info@ivandoe.com"),
+                  currentAccountPicture: CircleAvatar(
+                    backgroundColor: Colors.amberAccent,
+                    child: Text("I",
+                        style: TextStyle(fontSize: 30, color: Colors.indigo)),
                   ),
+                  currentAccountPictureSize: Size.square(50),
                 ),
               ),
               ListTile(
-                title: Text("Friends"),
-                leading: Icon(Icons.people),
+                leading: const Icon(Icons.person),
+                title: const Text(' My Profile '),
+                onTap: () {
+                  Navigator.pop(context);
+                },
               ),
               ListTile(
-                title: Text("Contact"),
-                leading: Icon(Icons.mail),
+                title: const Text("Friends"),
+                leading: const Icon(Icons.people),
+                onTap: () {
+                  Navigator.pop(context);
+                },
               ),
               ListTile(
-                title: Text("Settings"),
-                leading: Icon(Icons.settings),
+                title: const Text("Contact"),
+                leading: const Icon(Icons.mail),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                title: const Text("Settings"),
+                leading: const Icon(Icons.settings),
+                onTap: () {
+                  Navigator.pop(context);
+                },
               ),
             ],
           ),
@@ -93,7 +117,9 @@ class _TestAppState extends State<TestApp> {
           fixedColor: Colors.green,
           backgroundColor: Colors.black,
           unselectedItemColor: Colors.white,
-          selectedLabelStyle: const TextStyle(fontSize: 18,),
+          selectedLabelStyle: const TextStyle(
+            fontSize: 18,
+          ),
           items: const [
             BottomNavigationBarItem(
               label: "Home",
