@@ -45,8 +45,8 @@ class _TestAppState extends State<TestApp> {
         ),
         // body
         body: Container(
-          width: 90,
-          height: 60,
+          width: 190,
+          height: 160,
           margin: const EdgeInsets.all(20),
           padding: const EdgeInsets.all(10),
           alignment: Alignment.center,
@@ -62,7 +62,17 @@ class _TestAppState extends State<TestApp> {
                   spreadRadius: 5.0,
                 ),
               ]),
-          child: const Text("Child ELement"),
+          child: RichText(
+          overflow: TextOverflow.clip,
+            textAlign: TextAlign.center,
+            softWrap: true,
+            maxLines: 1,
+            textScaleFactor: 1,
+            text: TextSpan(
+            text: "Rich Text Element",
+              style: DefaultTextStyle.of(context).style,
+            ),
+          ),
         ),
 
         //float action button
