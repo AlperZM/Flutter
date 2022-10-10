@@ -2,9 +2,21 @@ Basic Widgets
 
 // AppBar insaide Scaffold
 appBar: AppBar(
-        backgroundColor: Colors.green,
-        title: const Text("To Do List"),
-      ),
+          backgroundColor: Colors.green,
+          title: const Text("To Do List"),
+          titleSpacing: 0.0,
+          centerTitle: true,
+          toolbarHeight: 70,
+          toolbarOpacity: 0.8,
+          actions: <Widget>[
+            IconButton(
+              icon: const Icon(Icons.search),
+              tooltip: "Search",
+              onPressed: () {},
+            ),
+          ],
+        ),
+        
       
       
       
@@ -12,8 +24,8 @@ appBar: AppBar(
 drawer: Drawer(
           child: ListView(
             padding: const EdgeInsets.all(0),
-            children: const [
-              DrawerHeader(
+            children: [
+              const DrawerHeader(
                 decoration: BoxDecoration(
                   color: Colors.green,
                 ),
@@ -41,6 +53,23 @@ drawer: Drawer(
                     ),
                   ),
                 ),
+              ),
+              ListTile(
+                leading: const Icon(Icons.person),
+                title: const Text(' My Profile '),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+              leading: const Icon(Icons.settings),
+                title: const Text("Settings"),
+                onTap: (){Navigator.pop(context);},
+              ),
+              ListTile(
+              leading: const Icon(Icons.logout),
+                title: const Text("Log Out"),
+                onTap: (){Navigator.pop(context);},
               ),
             ],
           ),
