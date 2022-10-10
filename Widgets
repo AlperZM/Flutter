@@ -1,0 +1,33 @@
+Basic Widgets
+// line: 20 AppBar
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// AppBar insaide Scaffold
+appBar: AppBar(
+        backgroundColor: Colors.green,
+        title: const Text("To Do List"),
+      ),
+      
+      
+      
+      
+      
+      // drawer
+       drawer: const Drawer(
+      
+      ),
