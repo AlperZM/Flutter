@@ -1,21 +1,4 @@
 Basic Widgets
-// line: 20 AppBar
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // AppBar insaide Scaffold
 appBar: AppBar(
@@ -25,9 +8,40 @@ appBar: AppBar(
       
       
       
-      
-      
-      // drawer
-       drawer: const Drawer(
-      
-      ),
+ // drawer outsize body, inside scaffold     
+drawer: Drawer(
+          child: ListView(
+            padding: const EdgeInsets.all(0),
+            children: const [
+              DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Colors.green,
+                ),
+                child: UserAccountsDrawerHeader(
+                  decoration: BoxDecoration(
+                    color: Colors.green,
+                  ),
+                  accountName: Text(
+                    "Account Name",
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.white,
+                    ),
+                  ),
+                  accountEmail: Text("jo@jojo.com"),
+                  currentAccountPictureSize: Size.square(50),
+                  currentAccountPicture: CircleAvatar(
+                    backgroundColor: Colors.greenAccent,
+                    child: Text(
+                      "A",
+                      style: TextStyle(
+                        fontSize: 40,
+                        color: Colors.blue,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
