@@ -74,3 +74,14 @@ drawer: Drawer(
             ],
           ),
         ),
+
+
+// floatingActionButton... bottom floating button
+floatingActionButton: FloatingActionButton(
+elevation: 2,
+child: const Icon(Icons.add),
+ onPressed: (){},
+        ),
+
+
+
