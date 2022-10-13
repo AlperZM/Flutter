@@ -1,6 +1,6 @@
-Basic Widgets
-
-// AppBar insaide Scaffold
+Basic Widgets widget = div
+// imagine widgets as divs in html
+// AppBar insaide Scaffold 
 appBar: AppBar(
           backgroundColor: Colors.green,
           title: const Text("To Do List"),
