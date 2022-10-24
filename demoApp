@@ -68,7 +68,7 @@ class Sector2 extends StatelessWidget {
         border: Border.all(width: 3, color: Colors.black),
       ),
       child: Column(
-        children: const [
+        children: [
           TaskItem(label: "Task Item 1"),
           TaskItem(label: "Task Item 2"),
           TaskItem(label: "Task Item 3"),
@@ -78,16 +78,24 @@ class Sector2 extends StatelessWidget {
   }
 }
 
-class TaskItem extends StatelessWidget {
-  final String label;
+class TaskItem extends StatefulWidget {
+final String label;
 
-  const TaskItem({Key? key, required this.label}) : super(key: key);
+  TaskItem({Key? key, required this.label}) : super(key: key);
 
+  @override
+  _TaskItemState createState() => _TaskItemState();
+}
+
+class _TaskItemState extends State<TaskItem> {
+  bool? _value = false;
   @override
   Widget build(BuildContext context) {
     return Row(children: [
-      const Checkbox(onChanged: null, value: false),
-      Text(label),
+      Checkbox(
+          onChanged: (newValue) => setState(() => _value = newValue),
+          value: _value),
+      Text(widget.label),
     ]);
   }
 }
