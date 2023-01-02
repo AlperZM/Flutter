@@ -114,8 +114,6 @@ class _AppBodyState extends State<AppBody> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 200,
-      height: 50,
       margin: const EdgeInsets.all(20),
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
@@ -146,6 +144,11 @@ class _AppBodyState extends State<AppBody> {
                 }),
           ),
           const Text("Learn Dart"),
+          IconButton(
+            icon: const Icon(Icons.delete),
+            tooltip: "Delete",
+            onPressed: () {},
+          ),
         ],
       ),
     );
