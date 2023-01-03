@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
+          centerTitle: true,
           title: const Text("My App"),
           actions: <Widget>[
             IconButton(
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
             ),
           ],
         ),
-        body: const AppBody(),
+        body: AppBody(),
         floatingActionButton: const AppFAB(),
         bottomNavigationBar: const AppBNB(),
         drawer: const AppDrawer(),
@@ -34,8 +35,12 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class AppBody extends StatelessWidget {
-  const AppBody({super.key});
+class AppBody extends StatefulWidget {
+  @override
+  State<AppBody> createState() => _AppBodyState();
+}
+
+class _AppBodyState extends State<AppBody> {
   @override
   Widget build(BuildContext context) {
     return Container(
