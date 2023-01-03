@@ -219,6 +219,9 @@ class _SecondPageState extends State<SecondPage> {
           ],
         ),
       ),
+      floatingActionButton: const AppFAB(),
+      bottomNavigationBar: AppBNB(),
+      drawer: const AppDrawer(),
     );
   }
 }
