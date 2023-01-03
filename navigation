@@ -22,7 +22,9 @@ class MyApp extends StatelessWidget {
             IconButton(
               icon: const Icon(Icons.telegram),
               tooltip: "Telegram",
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pop(context);
+              },
             ),
           ],
         ),
@@ -197,12 +199,22 @@ class _SecondPageState extends State<SecondPage> {
         ),
         child: Column(
           children: <Widget>[
-            TextButton(
-              style: TextButton.styleFrom(
-                textStyle: const TextStyle(fontSize: 20),
+            Container(
+              width: 150,
+              height: 50,
+              decoration: BoxDecoration(
+                  color: Colors.teal,
+                  border: Border.all(width: 3, color: Colors.white)),
+              child: TextButton(
+                style: TextButton.styleFrom(
+                  textStyle: const TextStyle(fontSize: 20, color: Colors.white),
+                ),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text('first Page',
+                    style: TextStyle(color: Colors.white)),
               ),
-              onPressed: () {},
-              child: const Text('first Page'),
             ),
           ],
         ),
