@@ -1,1 +1,59 @@
 // for big, complex apps use this
+import 'package:flutter/material.dart';
+
+void main() => runApp(MaterialApp(
+      initialRoute: "/",
+      routes: {
+        "/": (context) => homePage(),
+        "/secondPage": (context) => secondPage(),
+      },
+    ));
+
+class homePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(),
+      body: Center(
+        child: SizedBox(
+          width: 250,
+          child: ElevatedButton(
+              child: Row(
+                children: const <Widget>[
+                  Icon(Icons.arrow_right),
+                  Text("Second Page"),
+                ],
+              ),
+              onPressed: () {
+                Navigator.pushNamed(context, "/secondPage");
+              }),
+        ),
+      ),
+    );
+  }
+}
+
+class secondPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(),
+      body: Center(
+        child: SizedBox(
+          width: 250,
+          child: ElevatedButton(
+            child: Row(
+              children: const <Widget>[
+                Icon(Icons.arrow_left),
+                Text("Home page"),
+              ],
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+        ),
+      ),
+    );
+  }
+}
