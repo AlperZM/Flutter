@@ -1,51 +1,61 @@
 // for big, complex apps use this
 import 'package:flutter/material.dart';
 
-void main() => runApp(MaterialApp(
-      initialRoute: "/",
-      routes: {
-        "/": (context) => homePage(),
-        "/secondPage": (context) => secondPage(),
-      },
-    ));
+void main() => runApp(
+      MaterialApp(
+        initialRoute: "/",
+        routes: {
+          "/": (context) => homePage(),
+          "/details": (context) => detailPage(),
+        },
+      ),
+    );
 
 class homePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: const Center(child: Text("Home Page")),
+      ),
       body: Center(
         child: SizedBox(
-          width: 250,
+          width: 200,
           child: ElevatedButton(
-              child: Row(
-                children: const <Widget>[
-                  Icon(Icons.arrow_right),
-                  Text("Second Page"),
-                ],
-              ),
-              onPressed: () {
-                Navigator.pushNamed(context, "/secondPage");
-              }),
+            child: Row(
+              children: const <Widget>[
+                Icon(Icons.arrow_right_alt_sharp),
+                Text("Detail Page"),
+              ],
+            ),
+            onPressed: () {
+              Navigator.pushNamed(
+                context,
+                "/details",
+              );
+            },
+          ),
         ),
       ),
     );
   }
 }
 
-class secondPage extends StatelessWidget {
+class detailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: const Center(child: Text("Detail Page")),
+      ),
       body: Center(
         child: SizedBox(
-          width: 250,
+          width: 200,
           child: ElevatedButton(
             child: Row(
               children: const <Widget>[
-                Icon(Icons.arrow_left),
-                Text("Home page"),
+                Icon(Icons.arrow_left_sharp),
+                Text("Home Page"),
               ],
             ),
             onPressed: () {
