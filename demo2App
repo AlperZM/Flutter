@@ -13,7 +13,7 @@ class DemoApp extends StatelessWidget {
       routes: {
         "/": (context) => HomePage(),
         "/secondPage": (context) => SecondPage(),
-        "/settings": (context) => Settingspage(),
+        "/settings": (context) => SettingsPage(),
         "/profile": (context) => ProfilePage(),
         "/login": (context) => LogInPage(),
       },
@@ -53,11 +53,10 @@ class DemoAppBar extends StatelessWidget implements PreferredSizeWidget {
 class AppFAB extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return FloatingActionBar(
-      child: const Icon(Icons.chat),
-      tooltip: "Send Message",
-      onPressed: () {},
-    );
+    return FloatingActionButton(
+        tooltip: "Send Message",
+        onPressed: () {},
+        child: const Icon(Icons.chat));
   }
 }
 
@@ -123,7 +122,7 @@ class LogInPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Column(
-        children: <Widget>[
+        children: const <Widget>[
           Text("This Is LogInPage"),
         ],
       ),
@@ -136,7 +135,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Column(
-        children: <Widget>[
+        children: const <Widget>[
           Text("This Is LogInPage"),
         ],
       ),
@@ -149,7 +148,7 @@ class SecondPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Column(
-        children: <Widget>[
+        children: const <Widget>[
           Text("This Is LogInPage"),
         ],
       ),
@@ -162,7 +161,7 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Column(
-        children: <Widget>[
+        children: const <Widget>[
           Text("This Is LogInPage"),
         ],
       ),
@@ -175,7 +174,7 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Column(
-        children: <Widget>[
+        children: const <Widget>[
           Text("This Is LogInPage"),
         ],
       ),
