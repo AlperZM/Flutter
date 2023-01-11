@@ -17,19 +17,13 @@ class DemoApp extends StatelessWidget {
         "/profile": (context) => ProfilePage(),
         "/login": (context) => LogInPage(),
       },
-      home: Scaffold(
-        appBar: DemoAppBar(),
-        floatingActionButton: AppFAB(),
-        drawer: AppDrawer(),
-        bottomNavigationBar: AppBNB(),
-      ),
     );
   }
 }
 
 class DemoAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
-  Size get preferredSize => const Size.fromHeight(100);
+  Size get preferredSize => const Size.fromHeight(60);
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -120,8 +114,8 @@ class AppDrawer extends StatelessWidget {
 class LogInPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
+    return Scaffold(
+      body: Column(
         children: const <Widget>[
           Text("This Is LogInPage"),
         ],
@@ -133,8 +127,12 @@ class LogInPage extends StatelessWidget {
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
+    return Scaffold(
+      appBar: DemoAppBar(),
+      floatingActionButton: AppFAB(),
+      drawer: AppDrawer(),
+      bottomNavigationBar: AppBNB(),
+      body: Column(
         children: const <Widget>[
           Text("This Is LogInPage"),
         ],
@@ -146,8 +144,12 @@ class HomePage extends StatelessWidget {
 class SecondPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
+    return Scaffold(
+      appBar: DemoAppBar(),
+      floatingActionButton: AppFAB(),
+      drawer: AppDrawer(),
+      bottomNavigationBar: AppBNB(),
+      body: Column(
         children: const <Widget>[
           Text("This Is LogInPage"),
         ],
@@ -159,8 +161,12 @@ class SecondPage extends StatelessWidget {
 class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
+    return Scaffold(
+      appBar: DemoAppBar(),
+      floatingActionButton: AppFAB(),
+      drawer: AppDrawer(),
+      bottomNavigationBar: AppBNB(),
+      body: Column(
         children: const <Widget>[
           Text("This Is LogInPage"),
         ],
@@ -172,8 +178,12 @@ class SettingsPage extends StatelessWidget {
 class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
+    return Scaffold(
+      appBar: DemoAppBar(),
+      floatingActionButton: AppFAB(),
+      drawer: AppDrawer(),
+      bottomNavigationBar: AppBNB(),
+      body: Column(
         children: const <Widget>[
           Text("This Is LogInPage"),
         ],
