@@ -10,8 +10,18 @@ class DemoApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      routes: {
+        "/": (context) => HomePage(),
+        "/secondPage": (context) => SecondPage(),
+        "/settings": (context) => Settingspage(),
+        "/profile": (context) => ProfilePage(),
+        "/login": (context) => LogInPage(),
+      },
       home: Scaffold(
         appBar: DemoAppBar(),
+        floatingActionButton: AppFAB(),
+        drawer: AppDrawer(),
+        bottomNavigationBar: AppBNB(),
       ),
     );
   }
@@ -36,6 +46,139 @@ class DemoAppBar extends StatelessWidget implements PreferredSizeWidget {
           onPressed: () {},
         ),
       ],
+    );
+  }
+}
+
+class AppFAB extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return FloatingActionBar(
+      child: const Icon(Icons.chat),
+      tooltip: "Send Message",
+      onPressed: () {},
+    );
+  }
+}
+
+class AppBNB extends StatefulWidget {
+  @override
+  State<AppBNB> createState() => _AppBNBState();
+}
+
+class _AppBNBState extends State<AppBNB> {
+  @override
+  Widget build(BuildContext context) {
+    return BottomNavigationBar(
+      currentIndex: 0,
+      fixedColor: Colors.green,
+      backgroundColor: Colors.black,
+      unselectedItemColor: Colors.white,
+      selectedLabelStyle: const TextStyle(
+        fontSize: 18,
+      ),
+      items: const [
+        BottomNavigationBarItem(
+          label: "Home",
+          icon: Icon(Icons.home),
+        ),
+        BottomNavigationBarItem(
+          label: "Search",
+          icon: Icon(Icons.search),
+        ),
+        BottomNavigationBarItem(
+          label: "Profile",
+          icon: Icon(Icons.account_circle),
+        ),
+      ],
+      onTap: (int indexOfItem) {},
+    );
+  }
+}
+
+class AppDrawer extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: const <Widget>[
+          DrawerHeader(
+            decoration: BoxDecoration(color: Colors.teal),
+            child: Text("Drawer Header",
+                style: TextStyle(fontWeight: FontWeight.bold)),
+          ),
+          ListTile(
+            title: Text("Settings"),
+            leading: Icon(Icons.settings),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class LogInPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        children: <Widget>[
+          Text("This Is LogInPage"),
+        ],
+      ),
+    );
+  }
+}
+
+class HomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        children: <Widget>[
+          Text("This Is LogInPage"),
+        ],
+      ),
+    );
+  }
+}
+
+class SecondPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        children: <Widget>[
+          Text("This Is LogInPage"),
+        ],
+      ),
+    );
+  }
+}
+
+class SettingsPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        children: <Widget>[
+          Text("This Is LogInPage"),
+        ],
+      ),
+    );
+  }
+}
+
+class ProfilePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        children: <Widget>[
+          Text("This Is LogInPage"),
+        ],
+      ),
     );
   }
 }
