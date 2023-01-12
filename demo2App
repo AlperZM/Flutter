@@ -12,7 +12,7 @@ class DemoApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: {
         "/": (context) => HomePage(),
-        "/secondPage": (context) => SecondPage(),
+        "/second": (context) => SecondPage(),
         "/settings": (context) => SettingsPage(),
         "/profile": (context) => ProfilePage(),
         "/login": (context) => LogInPage(),
@@ -115,11 +115,71 @@ class LogInPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: const <Widget>[
-          Text("This Is LogInPage"),
+      appBar: DemoAppBar(),
+      floatingActionButton: AppFAB(),
+      drawer: AppDrawer(),
+      bottomNavigationBar: AppBNB(),
+      body: Center(
+     child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          const Text("This Is LogInPage", style: TextStyle(fontSize: 24)),
+          Container(
+              height: 60,
+              color: Colors.cyan[500],
+              child: const Text("Input Area : user ID")),
+          const SizedBox(width: 50),
+          Container(
+              height: 60,
+              color: Colors.cyan[500],
+              child: const Text("PassWord Area : user Password")),
+                     SizedBox(
+              width: 200,
+              height: 200,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <ElevatedButton>[
+                  ElevatedButton(
+                    child: const Text("Home Page"),
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        "/",
+                      );
+                    },
+                  ),
+                  ElevatedButton(
+                    child: const Text("Second Page"),
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        "/second",
+                      );
+                    },
+                  ),
+                  ElevatedButton(
+                    child: const Text("Profile Page"),
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        "/profile",
+                      );
+                    },
+                  ),
+                  ElevatedButton(
+                    child: const Text("logIn Page"),
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        "/login",
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ),
         ],
-      ),
+      ),),
     );
   }
 }
@@ -132,10 +192,63 @@ class HomePage extends StatelessWidget {
       floatingActionButton: AppFAB(),
       drawer: AppDrawer(),
       bottomNavigationBar: AppBNB(),
-      body: Column(
-        children: const <Widget>[
-          Text("This Is LogInPage"),
-        ],
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            const Text("This Is Home Page", style: TextStyle(fontSize: 24)),
+            Container(
+                margin: const EdgeInsets.all(20),
+                width: 200,
+                height: 200,
+                color: Colors.tealAccent),
+            SizedBox(
+              width: 200,
+              height: 200,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <ElevatedButton>[
+                  ElevatedButton(
+                    child: const Text("Home Page"),
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        "/",
+                      );
+                    },
+                  ),
+                  ElevatedButton(
+                    child: const Text("Second Page"),
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        "/second",
+                      );
+                    },
+                  ),
+                  ElevatedButton(
+                    child: const Text("Profile Page"),
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        "/profile",
+                      );
+                    },
+                  ),
+                  ElevatedButton(
+                    child: const Text("logIn Page"),
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        "/login",
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -149,10 +262,63 @@ class SecondPage extends StatelessWidget {
       floatingActionButton: AppFAB(),
       drawer: AppDrawer(),
       bottomNavigationBar: AppBNB(),
-      body: Column(
-        children: const <Widget>[
-          Text("This Is LogInPage"),
-        ],
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            const Text("This Is Second Page", style: TextStyle(fontSize: 24)),
+            Container(
+                margin: const EdgeInsets.all(20),
+                width: 200,
+                height: 200,
+                color: Colors.purpleAccent),
+                        SizedBox(
+              width: 200,
+              height: 200,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <ElevatedButton>[
+                  ElevatedButton(
+                    child: const Text("Home Page"),
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        "/",
+                      );
+                    },
+                  ),
+                  ElevatedButton(
+                    child: const Text("Second Page"),
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        "/second",
+                      );
+                    },
+                  ),
+                  ElevatedButton(
+                    child: const Text("Profile Page"),
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        "/profile",
+                      );
+                    },
+                  ),
+                  ElevatedButton(
+                    child: const Text("logIn Page"),
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        "/login",
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -166,10 +332,63 @@ class SettingsPage extends StatelessWidget {
       floatingActionButton: AppFAB(),
       drawer: AppDrawer(),
       bottomNavigationBar: AppBNB(),
-      body: Column(
-        children: const <Widget>[
-          Text("This Is LogInPage"),
-        ],
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            const Text("This Is Settings Page", style: TextStyle(fontSize: 24)),
+            Container(
+                margin: const EdgeInsets.all(20),
+                width: 200,
+                height: 200,
+                color: Colors.redAccent),
+                       SizedBox(
+              width: 200,
+              height: 200,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <ElevatedButton>[
+                  ElevatedButton(
+                    child: const Text("Home Page"),
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        "/",
+                      );
+                    },
+                  ),
+                  ElevatedButton(
+                    child: const Text("Second Page"),
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        "/second",
+                      );
+                    },
+                  ),
+                  ElevatedButton(
+                    child: const Text("Profile Page"),
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        "/profile",
+                      );
+                    },
+                  ),
+                  ElevatedButton(
+                    child: const Text("logIn Page"),
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        "/login",
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -183,10 +402,63 @@ class ProfilePage extends StatelessWidget {
       floatingActionButton: AppFAB(),
       drawer: AppDrawer(),
       bottomNavigationBar: AppBNB(),
-      body: Column(
-        children: const <Widget>[
-          Text("This Is LogInPage"),
-        ],
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            const Text("This Is Profile Page", style: TextStyle(fontSize: 24)),
+            Container(
+                margin: const EdgeInsets.all(20),
+                width: 200,
+                height: 200,
+                color: Colors.blueAccent),
+                        SizedBox(
+              width: 200,
+              height: 200,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <ElevatedButton>[
+                  ElevatedButton(
+                    child: const Text("Home Page"),
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        "/",
+                      );
+                    },
+                  ),
+                  ElevatedButton(
+                    child: const Text("Second Page"),
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        "/second",
+                      );
+                    },
+                  ),
+                  ElevatedButton(
+                    child: const Text("Profile Page"),
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        "/profile",
+                      );
+                    },
+                  ),
+                  ElevatedButton(
+                    child: const Text("logIn Page"),
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        "/login",
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
