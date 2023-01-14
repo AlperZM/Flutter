@@ -17,6 +17,13 @@ class DemoApp extends StatelessWidget {
         "/profile": (context) => ProfilePage(),
         "/login": (context) => LogInPage(),
       },
+      onUnknownRoute: (settings) => MaterialPageRoute(
+          builder: (context) => Scaffold(
+                appBar: AppBar(),
+                body: const Center(
+                  child: Text('Birşeyler ters gitti'),
+                ),
+              )),
     );
   }
 }
@@ -120,20 +127,20 @@ class LogInPage extends StatelessWidget {
       drawer: AppDrawer(),
       bottomNavigationBar: AppBNB(),
       body: Center(
-     child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          const Text("This Is LogInPage", style: TextStyle(fontSize: 24)),
-          Container(
-              height: 60,
-              color: Colors.cyan[500],
-              child: const Text("Input Area : user ID")),
-          const SizedBox(width: 50),
-          Container(
-              height: 60,
-              color: Colors.cyan[500],
-              child: const Text("PassWord Area : user Password")),
-                     SizedBox(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            const Text("This Is LogInPage", style: TextStyle(fontSize: 24)),
+            Container(
+                height: 60,
+                color: Colors.cyan[500],
+                child: const Text("Input Area : user ID")),
+            const SizedBox(width: 50),
+            Container(
+                height: 60,
+                color: Colors.cyan[500],
+                child: const Text("PassWord Area : user Password")),
+            SizedBox(
               width: 200,
               height: 200,
               child: Column(
@@ -178,8 +185,9 @@ class LogInPage extends StatelessWidget {
                 ],
               ),
             ),
-        ],
-      ),),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -272,7 +280,7 @@ class SecondPage extends StatelessWidget {
                 width: 200,
                 height: 200,
                 color: Colors.purpleAccent),
-                        SizedBox(
+            SizedBox(
               width: 200,
               height: 200,
               child: Column(
@@ -342,7 +350,7 @@ class SettingsPage extends StatelessWidget {
                 width: 200,
                 height: 200,
                 color: Colors.redAccent),
-                       SizedBox(
+            SizedBox(
               width: 200,
               height: 200,
               child: Column(
@@ -412,7 +420,7 @@ class ProfilePage extends StatelessWidget {
                 width: 200,
                 height: 200,
                 color: Colors.blueAccent),
-                        SizedBox(
+            SizedBox(
               width: 200,
               height: 200,
               child: Column(
