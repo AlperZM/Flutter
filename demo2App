@@ -102,15 +102,21 @@ class AppDrawer extends StatelessWidget {
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
-        children: const <Widget>[
-          DrawerHeader(
+        children: <Widget>[
+          const DrawerHeader(
             decoration: BoxDecoration(color: Colors.teal),
             child: Text("Drawer Header",
                 style: TextStyle(fontWeight: FontWeight.bold)),
           ),
           ListTile(
-            title: Text("Settings"),
-            leading: Icon(Icons.settings),
+            title: const Text("Settings"),
+            leading: const Icon(Icons.settings),
+            onTap: () {
+              Navigator.pushNamed(
+                context,
+                "/settings",
+              );
+            },
           ),
         ],
       ),
