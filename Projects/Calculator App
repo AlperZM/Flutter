@@ -1,0 +1,68 @@
+import 'package:flutter/material.dart';
+
+void main() => runApp(const CalcApp());
+
+class CalcApp extends StatefulWidget {
+  const CalcApp({super.key});
+
+  @override
+  State<CalcApp> createState() => _CalcAppState();
+}
+
+class _CalcAppState extends State<CalcApp> {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: const Text("Calculator App"),
+            actions: <Widget>[
+              IconButton(
+                icon: const Icon(Icons.dark_mode),
+                tooltip: "Dark Mode",
+                onPressed: () {},
+              ),
+            ],
+          ),
+          body: Container(
+            margin: const EdgeInsets.all(10),
+            padding: const EdgeInsets.all(15),
+            decoration: BoxDecoration(
+              color: Colors.teal[100],
+              border: Border.all(width: 1, color: Colors.black),
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: const [
+                BoxShadow(
+                  color: Colors.teal,
+                  blurRadius: 4,
+                  offset: Offset(4, 8),
+                ),
+              ],
+            ),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Container(
+                    height: 60,
+                    decoration: BoxDecoration(
+                      color: Colors.black12,
+                      border: Border.all(width: 1, color: Colors.black),
+                      boxShadow: [
+                        BoxShadow(
+                          offset: const Offset(5, 5),
+                          blurRadius: 5,
+                          color: Colors.black.withOpacity(0.3),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          )),
+    );
+  }
+}
