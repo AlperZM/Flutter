@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
 void main() => runApp(const SnackBarApp());
-
 class SnackBarApp extends StatelessWidget {
   const SnackBarApp({super.key});
   @override
@@ -79,13 +77,13 @@ class DemoSnackBar extends StatelessWidget {
                 label: "Understand",
                 onPressed: () {},
               ),
-              duration: const Duration(milliseconds: 2000),
-              width: 300.0,
-              padding: const EdgeInsets.symmetric(
+              duration: const Duration(milliseconds: 2000), // sets duration of snackbar
+              width: 300.0, // snackBar width
+              padding: const EdgeInsets.symmetric( // inner items padding in snackbar
                 horizontal: 8.0,
               ),
-              behavior: SnackBarBehavior.floating,
-              shape: RoundedRectangleBorder(
+              behavior: SnackBarBehavior.floating, // gives space from bottom and Snackbar
+              shape: RoundedRectangleBorder( // gives shape for SnackBar
                 borderRadius: BorderRadius.circular(10.0),
               ),
             ),
