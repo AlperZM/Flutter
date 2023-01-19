@@ -1,0 +1,71 @@
+import 'package:flutter/material.dart';
+
+void main() => runApp(const MyApp());
+
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  final Icon _iconsD =
+      const Icon(Icons.dark_mode_outlined, color: Colors.amber);
+  final Icon _iconsL =
+      const Icon(Icons.light_mode_outlined, color: Colors.black);
+  bool _isOk = true;
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: _isOk ? ThemeData.light() : ThemeData.dark(),
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: AppBar(
+          title: Center(
+              child: Text("Active Theme is : ${_isOk ? "Light" : "Dark"}")),
+          actions: <Widget>[
+            IconButton(
+              onPressed: () {
+                setState(() {
+                  _isOk = !_isOk;
+                });
+              },
+              icon: _isOk ? _iconsL : _iconsD,
+            ),
+          ],
+        ),
+        body: AppBody(),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            setState(() {
+              _isOk = !_isOk;
+            });
+          },
+          child: _isOk
+              ? const Icon(Icons.light_mode_outlined, color: Colors.black)
+              : const Icon(Icons.dark_mode_outlined, color: Colors.amber),
+        ),
+      ),
+    );
+  }
+}
+
+class AppBody extends StatefulWidget {
+  @override
+  State<AppBody> createState() => _AppBodyState();
+}
+
+class _AppBodyState extends State<AppBody> {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        width: 100,
+        height: 100,
+        color: Theme.of(context).colorScheme.secondary,
+        child: const Icon(Icons.light_mode_outlined,
+            color: Colors.black, size: 30),
+      ),
+    );
+  }
+}
