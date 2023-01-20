@@ -1,1 +1,16 @@
 // text and color themes
+// top of the MaterialApp()
+
+        theme: ThemeData(
+        //default Color Theme
+        primarySwatch: Colors.orange,
+        scaffoldBackgroundColor: Colors.orange[100],
+        
+        // default text theme
+        textTheme: const TextTheme(
+          headline1: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
+          headline6: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic),
+          bodyText2: TextStyle(fontSize: 20.0, fontFamily: 'Hind'),
+        ),
+      ),
+
