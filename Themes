@@ -6,6 +6,10 @@
          splashColor: Colors.red, // click effect
         primarySwatch: Colors.orange,
         scaffoldBackgroundColor: Colors.orange[100],
+       
+       // set default themes icon color
+      // floatingActionButtonTheme: FloatingActionButtonThemeData(
+      // foregroundColor: Colors.red,
         
         // default text theme
         textTheme: const TextTheme(
