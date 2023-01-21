@@ -1,0 +1,50 @@
+import 'package:flutter/material.dart';
+
+void main() => runApp(const ButtonsApp());
+
+class ButtonsApp extends StatelessWidget {
+  const ButtonsApp({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: AppBar(title: const Center(child: Text("Buttons"))),
+        body: Buttons(),
+      ),
+    );
+  }
+}
+
+class Buttons extends StatefulWidget {
+  @override
+  State<Buttons> createState() => _ButtonsState();
+}
+
+class _ButtonsState extends State<Buttons> {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: GridView.count(
+        padding: const EdgeInsets.all(15),
+        crossAxisCount: 4,
+        crossAxisSpacing: 5,
+        mainAxisSpacing: 5,
+        children: <Widget>[
+          Container(
+            color: Colors.blue[200],
+            width: 50,
+            height: 50,
+            child: Center(
+              child: IconButton(
+                icon: const Icon(Icons.ads_click, size: 40),
+                tooltip: "IconButton",
+                onPressed: () {},
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
