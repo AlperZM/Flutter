@@ -11,6 +11,11 @@ class ButtonsApp extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(title: const Center(child: Text("Buttons"))),
         body: Buttons(),
+        floatingActionButton: FloatingActionButton(
+          tooltip: "FloatingActionButton",
+          onPressed: () {},
+          child: const Text("FAB"),
+        ),
       ),
     );
   }
@@ -32,14 +37,69 @@ class _ButtonsState extends State<Buttons> {
         mainAxisSpacing: 5,
         children: <Widget>[
           Container(
-            color: Colors.blue[200],
+            decoration: BoxDecoration(
+              border: Border.all(width: 2, color: Colors.black),
+            ),
             width: 50,
-            height: 50,
+            height: 30,
             child: Center(
               child: IconButton(
                 icon: const Icon(Icons.ads_click, size: 40),
                 tooltip: "IconButton",
                 onPressed: () {},
+              ),
+            ),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              border: Border.all(width: 2, color: Colors.black),
+            ),
+            width: 50,
+            height: 30,
+            child: Center(
+              child: TextButton(
+                style: TextButton.styleFrom(
+                  textStyle: const TextStyle(
+                      fontSize: 25, fontWeight: FontWeight.bold),
+                  foregroundColor: Colors.red,
+                ),
+                onPressed: () {},
+                child: const Text("TextButton"),
+              ),
+            ),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              border: Border.all(width: 2, color: Colors.black),
+            ),
+            width: 50,
+            height: 30,
+            child: Center(
+              child: OutlinedButton(
+                style: TextButton.styleFrom(
+                  textStyle: const TextStyle(
+                      fontSize: 20, fontWeight: FontWeight.normal),
+                  foregroundColor: Colors.red,
+                ),
+                onPressed: () {},
+                child: const Text("OutlinedButton"),
+              ),
+            ),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              border: Border.all(width: 2, color: Colors.black),
+            ),
+            padding: const EdgeInsets.all(5),
+            width: 50,
+            height: 30,
+            child: Center(
+              child: ElevatedButton(
+                style: TextButton.styleFrom(
+                  textStyle: const TextStyle(fontSize: 20),
+                ),
+                onPressed: () {},
+                child: const Text("ElevatedButton"),
               ),
             ),
           ),
