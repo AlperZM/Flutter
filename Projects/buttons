@@ -33,6 +33,7 @@ class Buttons extends StatefulWidget {
 class _ButtonsState extends State<Buttons> {
   String dropdownValue = list.first;
   SampleItem? selectedMenu;
+  String popupMenuValue = "Select...";
 
   @override
   Widget build(BuildContext context) {
@@ -149,28 +150,34 @@ class _ButtonsState extends State<Buttons> {
             width: 50,
             height: 30,
             child: Center(
-              child: PopupMenuButton<SampleItem>(
-                initialValue: selectedMenu,
-                // Callback that sets the selected popup menu item.
-                onSelected: (SampleItem item) {
-                  setState(() {
-                    selectedMenu = item;
-                  });
-                },
-                itemBuilder: (BuildContext context) =>
-                    <PopupMenuEntry<SampleItem>>[
-                  const PopupMenuItem<SampleItem>(
-                    value: SampleItem.itemOne,
-                    child: Text('Item 1'),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  PopupMenuButton<SampleItem>(
+                    initialValue: selectedMenu,
+                    onSelected: (SampleItem item) {
+                      setState(() {
+                        selectedMenu = item;
+                        popupMenuValue = selectedMenu.toString().split(".")[1];
+                      });
+                    },
+                    itemBuilder: (BuildContext context) =>
+                        <PopupMenuEntry<SampleItem>>[
+                      const PopupMenuItem<SampleItem>(
+                        value: SampleItem.itemOne,
+                        child: Text('Item 1'),
+                      ),
+                      const PopupMenuItem<SampleItem>(
+                        value: SampleItem.itemTwo,
+                        child: Text('Item 2'),
+                      ),
+                      const PopupMenuItem<SampleItem>(
+                        value: SampleItem.itemThree,
+                        child: Text('Item 3'),
+                      ),
+                    ],
                   ),
-                  const PopupMenuItem<SampleItem>(
-                    value: SampleItem.itemTwo,
-                    child: Text('Item 2'),
-                  ),
-                  const PopupMenuItem<SampleItem>(
-                    value: SampleItem.itemThree,
-                    child: Text('Item 3'),
-                  ),
+                  Center(child: Text(popupMenuValue)),
                 ],
               ),
             ),
