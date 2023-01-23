@@ -4,6 +4,8 @@ void main() => runApp(const ButtonsApp());
 
 const List<String> list = <String>['One', 'Two', 'Three', 'Four'];
 
+enum SampleItem { itemOne, itemTwo, itemThree }
+
 class ButtonsApp extends StatelessWidget {
   const ButtonsApp({super.key});
   @override
@@ -30,6 +32,7 @@ class Buttons extends StatefulWidget {
 
 class _ButtonsState extends State<Buttons> {
   String dropdownValue = list.first;
+  SampleItem? selectedMenu;
 
   @override
   Widget build(BuildContext context) {
@@ -117,15 +120,14 @@ class _ButtonsState extends State<Buttons> {
             child: Center(
               child: DropdownButton<String>(
                 value: dropdownValue,
-                icon: const Icon(Icons.arrow_downward),
+                icon: const Icon(Icons.arrow_downward, color: Colors.purple),
                 elevation: 16,
                 style: const TextStyle(color: Colors.deepPurple),
                 underline: Container(
-                  height: 2,
+                  height: 3,
                   color: Colors.deepPurpleAccent,
                 ),
                 onChanged: (String? value) {
-                  // This is called when the user selects an item.
                   setState(() {
                     dropdownValue = value!;
                   });
@@ -136,6 +138,40 @@ class _ButtonsState extends State<Buttons> {
                     child: Text(value),
                   );
                 }).toList(),
+              ),
+            ),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              border: Border.all(width: 2, color: Colors.black),
+            ),
+            padding: const EdgeInsets.all(5),
+            width: 50,
+            height: 30,
+            child: Center(
+              child: PopupMenuButton<SampleItem>(
+                initialValue: selectedMenu,
+                // Callback that sets the selected popup menu item.
+                onSelected: (SampleItem item) {
+                  setState(() {
+                    selectedMenu = item;
+                  });
+                },
+                itemBuilder: (BuildContext context) =>
+                    <PopupMenuEntry<SampleItem>>[
+                  const PopupMenuItem<SampleItem>(
+                    value: SampleItem.itemOne,
+                    child: Text('Item 1'),
+                  ),
+                  const PopupMenuItem<SampleItem>(
+                    value: SampleItem.itemTwo,
+                    child: Text('Item 2'),
+                  ),
+                  const PopupMenuItem<SampleItem>(
+                    value: SampleItem.itemThree,
+                    child: Text('Item 3'),
+                  ),
+                ],
               ),
             ),
           ),
