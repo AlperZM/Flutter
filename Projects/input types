@@ -1,4 +1,3 @@
-//checkbox, input ,radia etc
 import 'package:flutter/material.dart';
 
 void main() => runApp(InputApp());
@@ -14,9 +13,22 @@ class _InputAppState extends State<InputApp> {
   final Icon _iconsL =
       const Icon(Icons.light_mode_outlined, color: Colors.black, size: 35);
   bool _isOk = true;
+  bool isChecked = false;
 
   @override
   Widget build(BuildContext context) {
+    Color getColor(Set<MaterialState> states) {
+      const Set<MaterialState> interactiveStates = <MaterialState>{
+        MaterialState.pressed,
+        MaterialState.hovered,
+        MaterialState.focused,
+      };
+      if (states.any(interactiveStates.contains)) {
+        return Colors.blue;
+      }
+      return Colors.red;
+    }
+
     return MaterialApp(
       theme: _isOk ? ThemeData.light() : ThemeData.dark(),
       debugShowCheckedModeBanner: false,
@@ -33,6 +45,37 @@ class _InputAppState extends State<InputApp> {
                 }),
             const SizedBox(width: 20),
           ],
+        ),
+        body: Center(
+          child: GridView.count(
+            crossAxisCount: 4,
+            mainAxisSpacing: 2,
+            crossAxisSpacing: 2,
+            children: <Widget>[
+              Container(
+                margin: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  border: Border.all(width: 1),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Checkbox(
+                        checkColor: Colors.white,
+                        fillColor: MaterialStateProperty.resolveWith(getColor),
+                        value: isChecked,
+                        onChanged: (value) {
+                          setState(() {
+                            isChecked = value!;
+                          });
+                        }),
+                    const Text("Input"),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
