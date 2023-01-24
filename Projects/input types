@@ -1,1 +1,40 @@
 //checkbox, input ,radia etc
+import 'package:flutter/material.dart';
+
+void main() => runApp(InputApp());
+
+class InputApp extends StatefulWidget {
+  @override
+  State<InputApp> createState() => _InputAppState();
+}
+
+class _InputAppState extends State<InputApp> {
+  final Icon _iconsD =
+      const Icon(Icons.dark_mode_outlined, color: Colors.amber, size: 35);
+  final Icon _iconsL =
+      const Icon(Icons.light_mode_outlined, color: Colors.black, size: 35);
+  bool _isOk = true;
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: _isOk ? ThemeData.light() : ThemeData.dark(),
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Center(child: Text("Input andSelections")),
+          actions: <Widget>[
+            IconButton(
+                icon: _isOk ? _iconsL : _iconsD,
+                onPressed: () {
+                  setState(() {
+                    _isOk = !_isOk;
+                  });
+                }),
+            const SizedBox(width: 20),
+          ],
+        ),
+      ),
+    );
+  }
+}
