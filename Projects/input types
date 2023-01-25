@@ -7,7 +7,11 @@ class InputApp extends StatefulWidget {
   State<InputApp> createState() => _InputAppState();
 }
 
-enum BgColor { teal, amber, green, white } //for radio buttons
+enum BgColor { teal, amber, white } //for radio buttons
+
+double _currentSliderValue = 1; // for the slider
+
+bool light = false; // for the switch
 
 class _InputAppState extends State<InputApp> {
   BgColor? _bgColor = BgColor.white;
@@ -147,13 +151,15 @@ class _InputAppState extends State<InputApp> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Checkbox(
-                        checkColor: Colors.white,
-                        fillColor: MaterialStateProperty.resolveWith(getColor),
-                        value: isChecked,
-                        onChanged: (value) {
+                    Slider(
+                        value: _currentSliderValue,
+                        min: 0,
+                        max: 5,
+                        divisions: 5,
+                        label: _currentSliderValue.toString(),
+                        onChanged: (double value) {
                           setState(() {
-                            isChecked = value!;
+                            _currentSliderValue = value;
                           });
                         }),
                     const Text("Slider"),
@@ -163,19 +169,24 @@ class _InputAppState extends State<InputApp> {
               Container(
                 margin: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
+                  color: light ? Colors.amberAccent[700] : Colors.grey,
                   border: Border.all(width: 1),
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Checkbox(
-                        checkColor: Colors.white,
-                        fillColor: MaterialStateProperty.resolveWith(getColor),
-                        value: isChecked,
-                        onChanged: (value) {
+                    Icon(
+                      Icons.tungsten_outlined,
+                      size: 45,
+                      color: light ? Colors.yellow : Colors.white,
+                    ),
+                    Switch(
+                        value: light,
+                        activeColor: Colors.amberAccent,
+                        onChanged: (bool value) {
                           setState(() {
-                            isChecked = value!;
+                            light = value;
                           });
                         }),
                     const Text("Switch"),
