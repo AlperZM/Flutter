@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(InputApp());
+void main() => runApp(const InputApp());
 
 class InputApp extends StatefulWidget {
+  const InputApp({super.key});
   @override
   State<InputApp> createState() => _InputAppState();
 }
@@ -13,6 +14,8 @@ double _currentSliderValue = 1; // for the slider
 
 bool light = false; // for the switch
 
+late TextEditingController _controller;
+
 class _InputAppState extends State<InputApp> {
   BgColor? _bgColor = BgColor.white;
   Color _selectBgColor = Colors.white;
@@ -22,6 +25,18 @@ class _InputAppState extends State<InputApp> {
       const Icon(Icons.light_mode_outlined, color: Colors.black, size: 35);
   bool _isOk = true;
   bool isChecked = false;
+
+  @override // for text field
+  void initState() {
+    super.initState();
+    _controller = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -202,15 +217,6 @@ class _InputAppState extends State<InputApp> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Checkbox(
-                        checkColor: Colors.white,
-                        fillColor: MaterialStateProperty.resolveWith(getColor),
-                        value: isChecked,
-                        onChanged: (value) {
-                          setState(() {
-                            isChecked = value!;
-                          });
-                        }),
                     const Text("Date and Time Pickers"),
                   ],
                 ),
@@ -224,15 +230,29 @@ class _InputAppState extends State<InputApp> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Checkbox(
-                        checkColor: Colors.white,
-                        fillColor: MaterialStateProperty.resolveWith(getColor),
-                        value: isChecked,
-                        onChanged: (value) {
-                          setState(() {
-                            isChecked = value!;
-                          });
-                        }),
+                    TextField(
+                      controller: _controller,
+                      onSubmitted: (String value) async {
+                        await showDialog<void>(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: const Text('Thanks!'),
+                              content: Text(
+                                  'You typed "$value", which has length ${value.characters.length}.'),
+                              actions: <Widget>[
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: const Text('OK'),
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      },
+                    ),
                     const Text("Text Field"),
                   ],
                 ),
