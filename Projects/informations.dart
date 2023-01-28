@@ -9,90 +9,144 @@ class InfoApp extends StatefulWidget {
 }
 
 class _InfoAppState extends State<InfoApp> {
-  final Icon _iconsD =
-      const Icon(Icons.dark_mode_outlined, color: Colors.amber, size: 35);
-  final Icon _iconsL =
-      const Icon(Icons.light_mode_outlined, color: Colors.black, size: 35);
-  bool _isOk = true;
-  bool isChecked = false;
-
+  bool _isDarkMode = false;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: _isOk ? ThemeData.light() : ThemeData.dark(),
       debugShowCheckedModeBanner: false,
+      theme: _isDarkMode ? ThemeData.dark() : ThemeData.light(),
       home: Scaffold(
         appBar: AppBar(
-          title: const Center(child: Text("Info Widgets")),
+          title: const Center(child: Text("Information Widgets")),
           actions: <Widget>[
             IconButton(
-                icon: _isOk ? _iconsL : _iconsD,
+                icon: _isDarkMode
+                    ? const Icon(Icons.light_mode_outlined,
+                        color: Colors.black, size: 35)
+                    : const Icon(Icons.dark_mode_outlined,
+                        color: Colors.amber, size: 35),
                 onPressed: () {
-                  setState(() {
-                    _isOk = !_isOk;
-                  });
+                  setState(() => _isDarkMode = !_isDarkMode);
                 }),
             const SizedBox(width: 20),
           ],
         ),
         body: Center(
           child: GridView.count(
-            crossAxisCount: 4,
             mainAxisSpacing: 2,
             crossAxisSpacing: 2,
+            crossAxisCount: 4,
             children: <Widget>[
-              // alert widget
               Container(
                 margin: const EdgeInsets.all(10),
-                padding: const EdgeInsets.all(5),
+                padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   border: Border.all(
-                      width: 1, color: _isOk ? Colors.black : Colors.white),
+                      width: 1,
+                      color: _isDarkMode ? Colors.white : Colors.black),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: const Center(
+                  child: DialogExample(),
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                      width: 1,
+                      color: _isDarkMode ? Colors.white : Colors.black),
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Center(
                   child: ElevatedButton(
-                    onPressed: () => showDialog<String>(
-                      context: context,
-                      builder: (BuildContext context) => AlertDialog(
-                        title: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: const <Widget>[
-                            Icon(Icons.warning_outlined),
-                            Text("Alert Dialog Title"),
-                          ],
-                        ),
-                        content: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: const <Widget>[
-                            Icon(Icons.report_problem_outlined),
-                            Text("Alert Dialog Descripton"),
-                          ],
-                        ),
-                        actions: <Widget>[
-                          TextButton(
-                            onPressed: () => Navigator.pop(context, 'Cancel'),
-                            child: const Text('Cancel'),
-                          ),
-                          TextButton(
-                            onPressed: () => Navigator.pop(context, 'OK'),
-                            child: const Text('OK'),
-                          ),
-                        ],
-                      ),
-                    ),
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const <Widget>[
-                          Icon(Icons.info_outlined),
-                          Text("Alert Button"),
-                        ]),
+                    onPressed: () {},
+                    child: const Text("Alert Button 2"),
+                  ),
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                      width: 1,
+                      color: _isDarkMode ? Colors.white : Colors.black),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Center(
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    child: const Text("Alert Button 3"),
+                  ),
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                      width: 1,
+                      color: _isDarkMode ? Colors.white : Colors.black),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Center(
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    child: const Text("Alert Button 4"),
+                  ),
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                      width: 1,
+                      color: _isDarkMode ? Colors.white : Colors.black),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Center(
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    child: const Text("Alert Button 5"),
                   ),
                 ),
               ),
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class DialogExample extends StatelessWidget {
+  const DialogExample({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () => showDialog<String>(
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+          title: const Text('AlertDialog Title'),
+          content: const Text('AlertDialog description'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.pop(context, 'Cancel'),
+              child: const Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () => Navigator.pop(context, 'OK'),
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: const <Widget>[
+          Icon(Icons.warning_amber),
+          Text("Alert Button"),
+        ],
       ),
     );
   }
