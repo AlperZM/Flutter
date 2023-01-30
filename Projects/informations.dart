@@ -8,6 +8,28 @@ class InfoApp extends StatefulWidget {
   State<InfoApp> createState() => _InfoAppState();
 }
 
+// for the ExpansionPanelList
+class Item {
+  Item({
+    required this.expandedValue,
+    required this.headerValue,
+    this.isExpanded = false,
+  });
+
+  String expandedValue;
+  String headerValue;
+  bool isExpanded;
+}
+
+List<Item> generateItems(int numberOfItems) {
+  return List<Item>.generate(numberOfItems, (int index) {
+    return Item(
+      headerValue: 'Panel $index',
+      expandedValue: 'This is item number $index',
+    );
+  });
+}
+
 class _InfoAppState extends State<InfoApp> {
   bool _isDarkMode = false;
   @override
@@ -96,11 +118,18 @@ class _InfoAppState extends State<InfoApp> {
                       color: _isDarkMode ? Colors.white : Colors.black),
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Center(
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    child: const Text("Alert Button 5"),
-                  ),
+                child: const DefaultSnackBar(),
+              ),
+              Container(
+                margin: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                      width: 1,
+                      color: _isDarkMode ? Colors.white : Colors.black),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: const Center(
+                  child: CustomSB(),
                 ),
               ),
               Container(
@@ -111,56 +140,8 @@ class _InfoAppState extends State<InfoApp> {
                       color: _isDarkMode ? Colors.white : Colors.black),
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Center(
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    child: const Text("Alert Button 6"),
-                  ),
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  border: Border.all(
-                      width: 1,
-                      color: _isDarkMode ? Colors.white : Colors.black),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Center(
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    child: const Text("Alert Button 7"),
-                  ),
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  border: Border.all(
-                      width: 1,
-                      color: _isDarkMode ? Colors.white : Colors.black),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Center(
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    child: const Text("Alert Button 8"),
-                  ),
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  border: Border.all(
-                      width: 1,
-                      color: _isDarkMode ? Colors.white : Colors.black),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Center(
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    child: const Text("Alert Button 9"),
-                  ),
+                child: const Center(
+                  child: ExpansionPL(),
                 ),
               ),
             ],
@@ -310,6 +291,117 @@ class _ShowModalBottomSheetState extends State<ShowModalBottomSheet> {
           );
         },
       ),
+    );
+  }
+}
+
+class DefaultSnackBar extends StatefulWidget {
+  const DefaultSnackBar({super.key});
+  @override
+  State<DefaultSnackBar> createState() => _DefaultSnackBarState();
+}
+
+class _DefaultSnackBarState extends State<DefaultSnackBar> {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: ElevatedButton(
+        child: const Text("Default SnackBar"),
+        onPressed: () {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: const Text("This is a default snackbar"),
+              action: SnackBarAction(
+                label: "Snackbar Action",
+                onPressed: () {},
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
+
+class CustomSB extends StatefulWidget {
+  const CustomSB({super.key});
+  @override
+  State<CustomSB> createState() => _CustomSBState();
+}
+
+class _CustomSBState extends State<CustomSB> {
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      child: const Text("Customized SnackBar"),
+      onPressed: () {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            action: SnackBarAction(
+              label: "Action",
+              onPressed: () {},
+            ),
+            content: const Text("Customized snackBar!"),
+            duration: const Duration(milliseconds: 2000),
+            width: 300,
+            padding: const EdgeInsets.symmetric(
+              horizontal: 8,
+            ),
+            behavior: SnackBarBehavior.floating,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class ExpansionPL extends StatefulWidget {
+  const ExpansionPL({super.key});
+  @override
+  State<ExpansionPL> createState() => _ExpansionPLState();
+}
+
+class _ExpansionPLState extends State<ExpansionPL> {
+  final List<Item> _data = generateItems(8);
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Container(
+        child: _buildPanel(),
+      ),
+    );
+  }
+
+  Widget _buildPanel() {
+    return ExpansionPanelList(
+      expansionCallback: (int index, bool isExpanded) {
+        setState(() {
+          _data[index].isExpanded = !isExpanded;
+        });
+      },
+      children: _data.map<ExpansionPanel>((Item item) {
+        return ExpansionPanel(
+          headerBuilder: (BuildContext context, bool isExpanded) {
+            return ListTile(
+              title: Text(item.headerValue),
+            );
+          },
+          body: ListTile(
+              title: Text(item.expandedValue),
+              subtitle:
+                  const Text('To delete this panel, tap the trash can icon'),
+              trailing: const Icon(Icons.delete),
+              onTap: () {
+                setState(() {
+                  _data.removeWhere((Item currentItem) => item == currentItem);
+                });
+              }),
+          isExpanded: item.isExpanded,
+        );
+      }).toList(),
     );
   }
 }
