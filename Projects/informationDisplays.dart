@@ -118,8 +118,29 @@ class _InfoDispState extends State<InfoDisp> {
                 ),
                 child: Center(
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const <Widget>[],
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      const Chip(
+                        avatar: CircleAvatar(
+                          backgroundColor: Colors.yellowAccent,
+                          child: Text("CE"),
+                        ),
+                        label: Text("Chip Examples"),
+                      ),
+                      Wrap(
+                        spacing: 10,
+                        runSpacing: 5,
+                        children: const <Widget>[
+                          Chip(
+                              avatar: CircleAvatar(
+                                backgroundColor: Colors.yellow,
+                                child: Icon(Icons.image),
+                              ),
+                              label: Text("Simple Chip")),
+                          ChipDemos(),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -186,6 +207,65 @@ class _TappableCardState extends State<TappableCard> {
               margin: const EdgeInsets.all(15),
               child: Text("tappableCard tapped $clicks times.")),
         ),
+      ),
+    );
+  }
+}
+
+class ChipDemos extends StatefulWidget {
+  const ChipDemos({super.key});
+  @override
+  State<ChipDemos> createState() => _ChipDemosState();
+}
+
+class _ChipDemosState extends State<ChipDemos> {
+  int inputs = 4;
+  int? selectedIndex;
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Wrap(
+            alignment: WrapAlignment.center,
+            spacing: 5,
+            runSpacing: 5,
+            children: List<Widget>.generate(
+              inputs,
+              (int index) {
+                return InputChip(
+                  label: Text("input Chip ${index + 1}"),
+                  selected: selectedIndex == index,
+                  onSelected: (bool selected) {
+                    setState(() {
+                      if (selectedIndex == index) {
+                        selectedIndex = null;
+                      } else {
+                        selectedIndex = index;
+                      }
+                    });
+                  },
+                  onDeleted: () {
+                    setState(() {
+                      inputs = inputs - 1;
+                    });
+                  },
+                );
+              },
+            ).toList(),
+          ),
+          const SizedBox(height: 10),
+          ElevatedButton(
+            onPressed: () {
+              setState(() {
+                inputs = 4;
+              });
+            },
+            child: const Text('Reset'),
+          )
+        ],
       ),
     );
   }
