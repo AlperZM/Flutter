@@ -175,6 +175,7 @@ class _InfoDispState extends State<InfoDisp> {
                         runSpacing: 5,
                         children: const <Widget>[
                           Filter(),
+                          ActionChips(),
                         ],
                       ),
                     ],
@@ -404,6 +405,30 @@ class _FilterState extends State<Filter> {
           ),
         ],
       ),
+    );
+  }
+}
+
+class ActionChips extends StatefulWidget {
+  const ActionChips({super.key});
+  @override
+  State<ActionChips> createState() => _ActionChipsState();
+}
+
+class _ActionChipsState extends State<ActionChips> {
+  bool favorite = false;
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: ActionChip(
+          avatar: Icon(favorite ? Icons.favorite : Icons.favorite_border,
+              color: favorite ? Colors.red : Colors.black),
+          label: const Text("Add to Favorites"),
+          onPressed: () {
+            setState(() {
+              favorite = !favorite;
+            });
+          }),
     );
   }
 }
