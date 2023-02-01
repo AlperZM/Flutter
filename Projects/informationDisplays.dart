@@ -127,6 +127,7 @@ class _InfoDispState extends State<InfoDisp> {
                         ),
                         label: Text("Chip Examples"),
                       ),
+                      const Divider(),
                       Wrap(
                         spacing: 10,
                         runSpacing: 5,
@@ -137,7 +138,43 @@ class _InfoDispState extends State<InfoDisp> {
                                 child: Icon(Icons.image),
                               ),
                               label: Text("Simple Chip")),
+                          Divider(),
                           ChipDemos(),
+                          Divider(),
+                          ChoiceDemos(),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.all(15),
+                padding: const EdgeInsets.all(5),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    width: 1,
+                    color: isDark ? Colors.white : Colors.black,
+                  ),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      const Chip(
+                        avatar: CircleAvatar(
+                          backgroundColor: Colors.yellowAccent,
+                          child: Text("CE"),
+                        ),
+                        label: Text("Other Chip Examples"),
+                      ),
+                      const Divider(),
+                      Wrap(
+                        spacing: 10,
+                        runSpacing: 5,
+                        children: const <Widget>[
+                          Filter(),
                         ],
                       ),
                     ],
@@ -265,6 +302,106 @@ class _ChipDemosState extends State<ChipDemos> {
             },
             child: const Text('Reset'),
           )
+        ],
+      ),
+    );
+  }
+}
+
+class ChoiceDemos extends StatefulWidget {
+  const ChoiceDemos({super.key});
+  @override
+  State<ChoiceDemos> createState() => _ChoiceDemosState();
+}
+
+class _ChoiceDemosState extends State<ChoiceDemos> {
+  int? _value = 1;
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          const Text("Choice Chips"),
+          const SizedBox(height: 5),
+          Wrap(
+            spacing: 5,
+            runSpacing: 5,
+            children: List<Widget>.generate(
+              3,
+              (int index) {
+                return ChoiceChip(
+                    label: Text("Choice ${index + 1}"),
+                    selected: _value == index,
+                    onSelected: (bool selected) {
+                      setState(() {
+                        _value = selected ? index : null;
+                      });
+                    });
+              },
+            ).toList(),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+enum ExerciseFilter { walking, running, cycling, hiking }
+
+class Filter extends StatefulWidget {
+  const Filter({super.key});
+  @override
+  State<Filter> createState() => _FilterState();
+}
+
+class _FilterState extends State<Filter> {
+  bool favorite = false;
+  List<String> _filters = <String>[];
+
+  @override
+  Widget build(BuildContext context) {
+    final TextTheme textTheme = Theme.of(context).textTheme;
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text('Choose an execise', style: textTheme.labelLarge),
+          const SizedBox(height: 5.0),
+          Wrap(
+            spacing: 5.0,
+            children: ExerciseFilter.values.map((ExerciseFilter exercise) {
+              return FilterChip(
+                label: Text(exercise.name),
+                selected: _filters.contains(exercise.name),
+                onSelected: (bool value) {
+                  setState(() {
+                    if (value) {
+                      if (!_filters.contains(exercise.name)) {
+                        _filters.add(exercise.name);
+                      }
+                    } else {
+                      _filters.removeWhere((String name) {
+                        return name == exercise.name;
+                      });
+                    }
+                  });
+                },
+              );
+            }).toList(),
+          ),
+          const SizedBox(height: 10.0),
+          Text('Looking for: ${_filters.join(', ')}'),
+          const SizedBox(height: 10.0),
+          ElevatedButton(
+            child: const Text("Reset"),
+            onPressed: () {
+              setState(() {
+                _filters = [];
+              });
+            },
+          ),
         ],
       ),
     );
