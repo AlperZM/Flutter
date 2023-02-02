@@ -76,7 +76,9 @@ class _DisplayAppState extends State<DisplayApp> {
                   ),
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: const Center(),
+                child: const Center(
+                  child: LinearPI(),
+                ),
               ),
               Container(
                 decoration: BoxDecoration(
@@ -220,6 +222,51 @@ class _CIPwDeterminedState extends State<CIPwDetermined>
                     });
                   }),
             ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class LinearPI extends StatefulWidget {
+  const LinearPI({super.key});
+  @override
+  State<LinearPI> createState() => _LinearPIState();
+}
+
+class _LinearPIState extends State<LinearPI> with TickerProviderStateMixin {
+  late AnimationController controller;
+  @override
+  void initState() {
+    controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 5),
+    )..addListener(() {
+        setState(() {});
+      });
+    controller.repeat(reverse: true);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(10),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          const Text("Linear progress indicator"),
+          LinearProgressIndicator(
+            valueColor: const AlwaysStoppedAnimation<Color>(Colors.green),
+            value: controller.value,
+            semanticsLabel: "Linear progress indicator",
           ),
         ],
       ),
