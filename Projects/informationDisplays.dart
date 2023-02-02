@@ -88,6 +88,28 @@ class _DisplayAppState extends State<DisplayApp> {
                   ),
                   borderRadius: BorderRadius.circular(10),
                 ),
+                child: const Center(
+                  child: LPIwD(),
+                ),
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    width: 1,
+                    color: isDark ? Colors.amber : Colors.black,
+                  ),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: const Center(),
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    width: 1,
+                    color: isDark ? Colors.amber : Colors.black,
+                  ),
+                  borderRadius: BorderRadius.circular(10),
+                ),
                 child: const Center(),
               ),
             ],
@@ -267,6 +289,76 @@ class _LinearPIState extends State<LinearPI> with TickerProviderStateMixin {
             valueColor: const AlwaysStoppedAnimation<Color>(Colors.green),
             value: controller.value,
             semanticsLabel: "Linear progress indicator",
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class LPIwD extends StatefulWidget {
+  const LPIwD({super.key});
+  @override
+  State<LPIwD> createState() => _LPIwDState();
+}
+
+class _LPIwDState extends State<LPIwD> with TickerProviderStateMixin {
+  late AnimationController controller;
+  bool determinate = false;
+  @override
+  void initState() {
+    controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 2),
+    )..addListener(() {
+        setState(() {});
+      });
+    controller.repeat();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(10),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          const Text("Linear progress indicator"),
+          const SizedBox(height: 15),
+          LinearProgressIndicator(
+            value: controller.value,
+            semanticsLabel: "Linear progress Indicator",
+          ),
+          Row(
+            children: <Widget>[
+              Expanded(
+                child: Text(
+                  "Determinate Mode Swtich",
+                  style: Theme.of(context).textTheme.titleSmall,
+                ),
+              ),
+              Switch(
+                  value: determinate,
+                  onChanged: (bool value) {
+                    setState(() {
+                      determinate = value;
+                      if (determinate) {
+                        controller.stop();
+                      } else {
+                        controller
+                          ..forward(from: controller.value)
+                          ..repeat();
+                      }
+                    });
+                  }),
+            ],
           ),
         ],
       ),
