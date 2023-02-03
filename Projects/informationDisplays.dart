@@ -93,6 +93,7 @@ class _DisplayAppState extends State<DisplayApp> {
                 ),
               ),
               Container(
+                padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   border: Border.all(
                     width: 1,
@@ -100,7 +101,9 @@ class _DisplayAppState extends State<DisplayApp> {
                   ),
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: const Center(),
+                child: const Center(
+                  child: ToolTips(),
+                ),
               ),
               Container(
                 decoration: BoxDecoration(
@@ -360,6 +363,28 @@ class _LPIwDState extends State<LPIwD> with TickerProviderStateMixin {
                   }),
             ],
           ),
+        ],
+      ),
+    );
+  }
+}
+
+class ToolTips extends StatefulWidget {
+  const ToolTips({super.key});
+  @override
+  State<ToolTips> createState() => _ToolTipsState();
+}
+
+class _ToolTipsState extends State<ToolTips> {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          const Tooltip(
+              message: "This is a Sipmle Tooltip",
+              child: Text("Simple Tooltip...")),
         ],
       ),
     );
