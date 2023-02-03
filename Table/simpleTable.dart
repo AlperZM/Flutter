@@ -38,7 +38,81 @@ class _TableAppState extends State<TableApp> {
                 }),
           ],
         ),
+        body: Center(
+          child: Container(
+            padding: const EdgeInsets.all(15),
+            decoration: BoxDecoration(
+              border: Border.all(
+                  width: 1, color: isDark ? Colors.yellow : Colors.black),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: AppTable(),
+          ),
+        ),
       ),
+    );
+  }
+}
+
+class AppTable extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return DataTable(
+      columns: const <DataColumn>[
+        DataColumn(
+          label: Expanded(
+            child: Text(
+              "Name",
+              style: TextStyle(fontStyle: FontStyle.italic),
+            ),
+          ),
+        ),
+        DataColumn(
+          label: Expanded(
+            child: Text(
+              "Age",
+              style: TextStyle(fontStyle: FontStyle.italic),
+            ),
+          ),
+        ),
+        DataColumn(
+          label: Expanded(
+            child: Text(
+              "Role",
+              style: TextStyle(fontStyle: FontStyle.italic),
+            ),
+          ),
+        ),
+      ],
+      rows: const <DataRow>[
+        DataRow(
+          cells: <DataCell>[
+            DataCell(Text("Gumball")),
+            DataCell(Text("16")),
+            DataCell(
+              Text("Student"),
+            ),
+          ],
+        ),
+        DataRow(
+          cells: <DataCell>[
+            DataCell(Text("Darwin")),
+            DataCell(Text("16")),
+            DataCell(
+              Text("Student"),
+            ),
+          ],
+        ),
+        DataRow(
+          cells: <DataCell>[
+            DataCell(Text("Simeon")),
+            DataCell(Text("5000")),
+            DataCell(
+              Text("Teacher"),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }
