@@ -38,7 +38,9 @@ class _TemplateAppState extends State<TemplateApp> {
                 }),
           ],
         ),
+        
+        body:const Center(),
+        
       ),
     );
   }
-}
