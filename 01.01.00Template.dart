@@ -44,3 +44,4 @@ class _TemplateAppState extends State<TemplateApp> {
       ),
     );
   }
+}
