@@ -105,6 +105,21 @@ class _DemoTextAppState extends State<DemoTextApp> {
                   width: 1, color: Theme.of(context).colorScheme.secondary),
               borderRadius: BorderRadius.circular(15),
             ),
+            child: RichText(
+              text: const TextSpan(
+                children: <TextSpan>[
+                  TextSpan(text: "RichText\n", style: TextStyle(fontSize: 20)),
+                  TextSpan(
+                      text: "TextSpan\n", style: TextStyle(color: Colors.red)),
+                  TextSpan(
+                      text: "text: ",
+                      style: TextStyle(fontWeight: FontWeight.bold)),
+                  TextSpan(
+                      text: "custom text",
+                      style: TextStyle(color: Colors.teal, fontSize: 25)),
+                ],
+              ),
+            ),
           ),
           Container(
             margin: const EdgeInsets.all(10),
