@@ -39,9 +39,27 @@ class _TemplateAppState extends State<TemplateApp> {
           ],
         ),
         
-        body:const Center(),
+        body:const Center(
+        
+        child: TemplateClass()),
         
       ),
+    );
+  }
+}
+
+class TemplateClass extends StatefulWidget{
+  const TemplateClass({super.key});
+  @override
+  State<TemplateClass> createState() => _TemplateClassState();
+}
+
+class _TemplateClassState extends State<TemplateClass>{
+  
+  @override
+  Widget build(BuildContext context){
+    return Center(
+    
     );
   }
 }
