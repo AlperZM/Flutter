@@ -70,6 +70,14 @@ class _AnimationWidgetState extends State<AnimationWidget> {
               AnimatedWidgetBsic(),
             ],
           ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const <Widget>[
+              Text("AlignTransition Widget"),
+              SizedBox(height: 15),
+              AlignTransitionBsic(),
+            ],
+          ),
         ],
       ),
     );
@@ -114,5 +122,54 @@ class _AnimatedWidgetBsicState extends State<AnimatedWidgetBsic>
   @override
   Widget build(BuildContext contex) {
     return SpinningContainer(controller: _controller);
+  }
+}
+
+class AlignTransitionBsic extends StatefulWidget {
+  const AlignTransitionBsic({super.key});
+  @override
+  State<AlignTransitionBsic> createState() => _AlignTransitionBsicState();
+}
+
+class _AlignTransitionBsicState extends State<AlignTransitionBsic>
+    with TickerProviderStateMixin {
+  late final AnimationController _controller = AnimationController(
+    duration: const Duration(seconds: 2),
+    vsync: this,
+  )..repeat(reverse: true);
+  late final Animation<AlignmentGeometry> _animation = Tween<AlignmentGeometry>(
+    begin: Alignment.bottomCenter,
+    end: Alignment.topCenter,
+  ).animate(
+    CurvedAnimation(
+      parent: _controller,
+      curve: Curves.linearToEaseOut,
+    ),
+  );
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 250,
+      height: 250,
+      color: Colors.brown,
+      child: AlignTransition(
+        alignment: _animation,
+        child: Container(
+          padding: const EdgeInsets.all(10),
+          width: 50,
+          height: 50,
+          decoration: BoxDecoration(
+            color: Colors.orange,
+            borderRadius: BorderRadius.circular(50),
+          ),
+        ),
+      ),
+    );
   }
 }
