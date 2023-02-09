@@ -78,6 +78,14 @@ class _AnimationWidgetState extends State<AnimationWidget> {
               AlignTransitionBsic(),
             ],
           ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const <Widget>[
+              Text("DecoratedboxTransition Widget"),
+              SizedBox(height: 15),
+              DecoratedBoxTransitionBasic(),
+            ],
+          ),
         ],
       ),
     );
@@ -155,8 +163,8 @@ class _AlignTransitionBsicState extends State<AlignTransitionBsic>
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 250,
-      height: 250,
+      width: 200,
+      height: 200,
       color: Colors.brown,
       child: AlignTransition(
         alignment: _animation,
@@ -168,6 +176,64 @@ class _AlignTransitionBsicState extends State<AlignTransitionBsic>
             color: Colors.orange,
             borderRadius: BorderRadius.circular(50),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class DecoratedBoxTransitionBasic extends StatefulWidget {
+  const DecoratedBoxTransitionBasic({super.key});
+  @override
+  State<DecoratedBoxTransitionBasic> createState() =>
+      _DecoratedBoxTransitionBasicState();
+}
+
+class _DecoratedBoxTransitionBasicState
+    extends State<DecoratedBoxTransitionBasic> with TickerProviderStateMixin {
+  final DecorationTween decorationTween = DecorationTween(
+    begin: BoxDecoration(
+      color: Colors.teal,
+      border: Border.all(style: BorderStyle.none),
+      borderRadius: BorderRadius.circular(60),
+      boxShadow: const <BoxShadow>[
+        BoxShadow(
+          color: Colors.grey,
+          blurRadius: 10,
+          spreadRadius: 3,
+          offset: Offset(0, 6),
+        ),
+      ],
+    ),
+    end: BoxDecoration(
+      color: Colors.tealAccent,
+      border: Border.all(
+        style: BorderStyle.none,
+      ),
+      borderRadius: BorderRadius.zero,
+    ),
+  );
+
+  late final AnimationController _controller = AnimationController(
+    vsync: this,
+    duration: const Duration(seconds: 3),
+  )..repeat(reverse: true);
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: DecoratedBoxTransition(
+        decoration: decorationTween.animate(_controller),
+        child: Container(
+          width: 200,
+          height: 200,
+          padding: const EdgeInsets.all(10),
+          child: const Center(child: Text("DecoratedBoxTransition")),
         ),
       ),
     );
