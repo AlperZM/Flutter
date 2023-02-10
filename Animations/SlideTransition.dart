@@ -63,6 +63,22 @@ class _SliderTransitionAppState extends State<SliderTransitionApp>
     parent: _controller,
     curve: Curves.elasticIn,
   ));
+  late final Animation<Offset> _offsetAnimation2 = Tween<Offset>(
+    begin: const Offset(0.2, 0.0),
+    end: const Offset(-0.4, 0.0),
+  ).animate(CurvedAnimation(
+    parent: _controller,
+    curve: Curves.elasticIn,
+  ));
+  late final Animation<Offset> _offsetAnimation3 = Tween<Offset>(
+    begin: const Offset(0.0, -0.4),
+    end: const Offset(0.0, 0.2),
+  ).animate(CurvedAnimation(parent: _controller, curve: Curves.elasticIn));
+  late final Animation<Offset> _offsetAnimation4 = Tween<Offset>(
+    begin: const Offset(-0.3, -0.3),
+    end: const Offset(0.3, 0.3),
+  ).animate(CurvedAnimation(parent: _controller, curve: Curves.elasticIn));
+
   @override
   void dispose() {
     _controller.dispose();
@@ -89,6 +105,48 @@ class _SliderTransitionAppState extends State<SliderTransitionApp>
                 padding: EdgeInsets.all(10),
                 child: Icon(Icons.arrow_forward_outlined,
                     size: 40, color: Colors.red),
+              ),
+            ),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              border: Border.all(width: 1),
+              borderRadius: BorderRadius.circular(15),
+            ),
+            child: SlideTransition(
+              position: _offsetAnimation2,
+              child: const Padding(
+                padding: EdgeInsets.all(10),
+                child: Icon(Icons.arrow_back_outlined,
+                    size: 40, color: Colors.green),
+              ),
+            ),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              border: Border.all(width: 1),
+              borderRadius: BorderRadius.circular(15),
+            ),
+            child: SlideTransition(
+              position: _offsetAnimation3,
+              child: const Padding(
+                padding: EdgeInsets.all(10),
+                child: Icon(Icons.arrow_upward_outlined,
+                    size: 40, color: Colors.blue),
+              ),
+            ),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              border: Border.all(width: 1),
+              borderRadius: BorderRadius.circular(15),
+            ),
+            child: SlideTransition(
+              position: _offsetAnimation4,
+              child: const Padding(
+                padding: EdgeInsets.all(10),
+                child: Icon(Icons.south_east_outlined,
+                    size: 40, color: Colors.orange),
               ),
             ),
           ),
