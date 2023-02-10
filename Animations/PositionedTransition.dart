@@ -121,11 +121,12 @@ class _PositionTransitionAppState extends State<PositionTransitionApp>
                   PositionedTransition(
                       rect: RelativeRectTween(
                         begin: RelativeRect.fromSize(
-                            const Rect.fromLTWH(10, 10, smallSize, smallSize),
+                            Rect.fromLTWH(biggest.width - smallSize, 0,
+                                smallSize, smallSize),
                             biggest),
                         end: RelativeRect.fromSize(
-                            Rect.fromLTWH(biggest.width - bigSize,
-                                biggest.height - bigSize, bigSize, bigSize),
+                            Rect.fromLTWH(
+                                0, biggest.height - bigSize, bigSize, bigSize),
                             biggest),
                       ).animate(CurvedAnimation(
                         parent: _controller,
@@ -136,6 +137,80 @@ class _PositionTransitionAppState extends State<PositionTransitionApp>
                           child: Container(
                             decoration: BoxDecoration(
                               color: Colors.green,
+                              borderRadius: BorderRadius.circular(50),
+                            ),
+                          ))),
+                ],
+              );
+            }),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              border: Border.all(width: 1),
+              borderRadius: BorderRadius.circular(15),
+            ),
+            child: LayoutBuilder(
+                builder: (BuildContext context, BoxConstraints constraints) {
+              final Size biggest = constraints.biggest;
+              return Stack(
+                children: <Widget>[
+                  PositionedTransition(
+                      rect: RelativeRectTween(
+                        begin: RelativeRect.fromSize(
+                            Rect.fromLTWH(
+                                0, biggest.height, smallSize, smallSize),
+                            biggest),
+                        end: RelativeRect.fromSize(
+                            Rect.fromLTWH(
+                                biggest.width - bigSize, 0, bigSize, bigSize),
+                            biggest),
+                      ).animate(CurvedAnimation(
+                        parent: _controller,
+                        curve: Curves.elasticInOut,
+                      )),
+                      child: Container(
+                          padding: const EdgeInsets.all(30),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.yellow,
+                              borderRadius: BorderRadius.circular(50),
+                            ),
+                          ))),
+                ],
+              );
+            }),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              border: Border.all(width: 1),
+              borderRadius: BorderRadius.circular(15),
+            ),
+            child: LayoutBuilder(
+                builder: (BuildContext context, BoxConstraints constraints) {
+              final Size biggest = constraints.biggest;
+              return Stack(
+                children: <Widget>[
+                  PositionedTransition(
+                      rect: RelativeRectTween(
+                        begin: RelativeRect.fromSize(
+                            Rect.fromLTWH(
+                                biggest.width - smallSize,
+                                biggest.height - smallSize,
+                                smallSize,
+                                smallSize),
+                            biggest),
+                        end: RelativeRect.fromSize(
+                            const Rect.fromLTWH(0, 0, bigSize, bigSize),
+                            biggest),
+                      ).animate(CurvedAnimation(
+                        parent: _controller,
+                        curve: Curves.elasticInOut,
+                      )),
+                      child: Container(
+                          padding: const EdgeInsets.all(30),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.blue,
                               borderRadius: BorderRadius.circular(50),
                             ),
                           ))),
