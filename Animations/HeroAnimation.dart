@@ -65,7 +65,22 @@ class _HeroClassState extends State<HeroClass> {
             onTap: () => _gotoBluePage(context),
             title: const Text("Go to Blue page"),
           ),
-
+          ListTile(
+            leading: const Hero(
+              tag: "hero-2",
+              child: BoxWidget(size: Size(50, 50), color: Colors.red),
+            ),
+            onTap: () => _gotoRedPage(context),
+            title: const Text("Go to Red page"),
+          ),
+          ListTile(
+            leading: const Hero(
+              tag: "hero-3",
+              child: BoxWidget(size: Size(50, 50), color: Colors.green),
+            ),
+            onTap: () => _gotoGreenPage(context),
+            title: const Text("Go to Green page"),
+          ),
         ],
       ),
     );
@@ -88,10 +103,40 @@ void _gotoBluePage(BuildContext context) {
   ));
 }
 
+void _gotoRedPage(BuildContext context) {
+  Navigator.of(context).push(MaterialPageRoute<void>(
+    builder: (BuildContext context) => Scaffold(
+      appBar: AppBar(
+        title: const Text("Red Page"),
+      ),
+      body: const Center(
+        child: Hero(
+          tag: "Hero-1",
+          child: BoxWidget(size: Size(250, 250), color: Colors.red),
+        ),
+      ),
+    ),
+  ));
+}
+
+void _gotoGreenPage(BuildContext context) {
+  Navigator.of(context).push(MaterialPageRoute<void>(
+    builder: (BuildContext context) => Scaffold(
+      appBar: AppBar(
+        title: const Text("Red Page"),
+      ),
+      body: const Center(
+        child: Hero(
+          tag: "Hero-1",
+          child: BoxWidget(size: Size(250, 250), color: Colors.red),
+        ),
+      ),
+    ),
+  ));
+}
+
 class BoxWidget extends StatelessWidget {
-  const BoxWidget({super.key, 
-                   required this.size, 
-                   required this.color});
+  const BoxWidget({super.key, required this.size, required this.color});
   final Size size;
   final Color color;
   @override
