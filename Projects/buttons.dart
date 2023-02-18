@@ -13,7 +13,7 @@ class ButtonsApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(title: const Center(child: Text("Buttons"))),
+        appBar: AppBar(title: const Center(child: Text("Buttons App"))),
         body: Buttons(),
         floatingActionButton: FloatingActionButton(
           tooltip: "FloatingActionButton",
