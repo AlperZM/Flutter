@@ -1,0 +1,3 @@
+source: https://medium.com/flutter-community/flutter-bloc-for-beginners-839e22adb9f5
+api: https://rapidapi.com/apidojo/api/realtor/
+desc: Try Flutter-Bloc for State management...
