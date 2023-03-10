@@ -1,3 +1,4 @@
+// some scaffold widgets
 //floatingActionButton
 // add this in scaffold after body
 floatingActionButton: FloatingActionButton(
