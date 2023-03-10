@@ -1,3 +1,4 @@
+//snackbar act like bottom alert section
 import 'package:flutter/material.dart';
 void main() => runApp(const SnackBarApp());
 class SnackBarApp extends StatelessWidget {
