@@ -2,9 +2,7 @@ import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -14,6 +12,7 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => MyAppState(),
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Namer App',
         theme: ThemeData(
           useMaterial3: true,
@@ -27,19 +26,32 @@ class MyApp extends StatelessWidget {
 
 class MyAppState extends ChangeNotifier {
   var current = WordPair.random();
+  var history = <WordPair>[];
+
+  GlobalKey? historyListKey;
+
   void getNext() {
+    history.insert(0, current);
+    var animatedList = historyListKey?.currentState as AnimatedListState?;
+    animatedList?.insertItem(0);
     current = WordPair.random();
     notifyListeners();
   }
 
   var favorites = <WordPair>[];
 
-  void toggleFavorite() {
-    if (favorites.contains(current)) {
-      favorites.remove(current);
+  void toggleFavorite([WordPair? pair]) {
+    pair = pair ?? current;
+    if (favorites.contains(pair)) {
+      favorites.remove(pair);
     } else {
-      favorites.add(current);
+      favorites.add(pair);
     }
+    notifyListeners();
+  }
+
+  void removeFavorite(WordPair pair) {
+    favorites.remove(pair);
     notifyListeners();
   }
 }
@@ -54,6 +66,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    var colorScheme = Theme.of(context).colorScheme;
+
     Widget page;
     switch (selectedIndex) {
       case 0:
@@ -66,41 +80,74 @@ class _MyHomePageState extends State<MyHomePage> {
         throw UnimplementedError('no widget for $selectedIndex');
     }
 
-    return LayoutBuilder(builder: (context, constraints) {
-      return Scaffold(
-        body: Row(
-          children: [
-            SafeArea(
-              child: NavigationRail(
-                extended: constraints.maxWidth >= 600, // ← Here.
-                destinations: const [
-                  NavigationRailDestination(
-                    icon: Icon(Icons.home),
-                    label: Text('Home'),
+    var mainArea = ColoredBox(
+      color: colorScheme.surfaceVariant,
+      child: AnimatedSwitcher(
+        duration: const Duration(milliseconds: 200),
+        child: page,
+      ),
+    );
+
+    return Scaffold(
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          if (constraints.maxWidth < 450) {
+            return Column(
+              children: [
+                Expanded(child: mainArea),
+                SafeArea(
+                  child: BottomNavigationBar(
+                    items: const [
+                      BottomNavigationBarItem(
+                        icon: Icon(Icons.home),
+                        label: 'Home',
+                      ),
+                      BottomNavigationBarItem(
+                        icon: Icon(Icons.favorite),
+                        label: 'Favorites',
+                      ),
+                    ],
+                    currentIndex: selectedIndex,
+                    onTap: (value) {
+                      setState(() {
+                        selectedIndex = value;
+                      });
+                    },
                   ),
-                  NavigationRailDestination(
-                    icon: Icon(Icons.favorite),
-                    label: Text('Favorites'),
+                )
+              ],
+            );
+          } else {
+            return Row(
+              children: [
+                SafeArea(
+                  child: NavigationRail(
+                    extended: constraints.maxWidth >= 600,
+                    destinations: const [
+                      NavigationRailDestination(
+                        icon: Icon(Icons.home),
+                        label: Text('Home'),
+                      ),
+                      NavigationRailDestination(
+                        icon: Icon(Icons.favorite),
+                        label: Text('Favorites'),
+                      ),
+                    ],
+                    selectedIndex: selectedIndex,
+                    onDestinationSelected: (value) {
+                      setState(() {
+                        selectedIndex = value;
+                      });
+                    },
                   ),
-                ],
-                selectedIndex: selectedIndex,
-                onDestinationSelected: (value) {
-                  setState(() {
-                    selectedIndex = value;
-                  });
-                },
-              ),
-            ),
-            Expanded(
-              child: Container(
-                color: Theme.of(context).colorScheme.primaryContainer,
-                child: page,
-              ),
-            ),
-          ],
-        ),
-      );
-    });
+                ),
+                Expanded(child: mainArea),
+              ],
+            );
+          }
+        },
+      ),
+    );
   }
 }
 
@@ -121,6 +168,11 @@ class GeneratorPage extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          const Expanded(
+            flex: 3,
+            child: HistoryListView(),
+          ),
+          const SizedBox(height: 10),
           BigCard(pair: pair),
           const SizedBox(height: 10),
           Row(
@@ -142,6 +194,7 @@ class GeneratorPage extends StatelessWidget {
               ),
             ],
           ),
+          const Spacer(flex: 2),
         ],
       ),
     );
@@ -153,7 +206,9 @@ class BigCard extends StatelessWidget {
     Key? key,
     required this.pair,
   }) : super(key: key);
+
   final WordPair pair;
+
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
@@ -164,11 +219,23 @@ class BigCard extends StatelessWidget {
     return Card(
       color: theme.colorScheme.primary,
       child: Padding(
-        padding: const EdgeInsets.all(15),
-        child: Text(
-          pair.asLowerCase,
-          style: style,
-          semanticsLabel: "${pair.first} ${pair.second}",
+        padding: const EdgeInsets.all(20),
+        child: AnimatedSize(
+          duration: const Duration(milliseconds: 200),
+          child: MergeSemantics(
+            child: Wrap(
+              children: [
+                Text(
+                  pair.first,
+                  style: style.copyWith(fontWeight: FontWeight.w200),
+                ),
+                Text(
+                  pair.second,
+                  style: style.copyWith(fontWeight: FontWeight.bold),
+                )
+              ],
+            ),
+          ),
         ),
       ),
     );
@@ -178,6 +245,7 @@ class BigCard extends StatelessWidget {
 class FavoritesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var theme = Theme.of(context);
     var appState = context.watch<MyAppState>();
 
     if (appState.favorites.isEmpty) {
@@ -186,19 +254,96 @@ class FavoritesPage extends StatelessWidget {
       );
     }
 
-    return ListView(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.all(30),
           child: Text('You have '
               '${appState.favorites.length} favorites:'),
         ),
-        for (var pair in appState.favorites)
-          ListTile(
-            leading: const Icon(Icons.favorite),
-            title: Text(pair.asLowerCase),
+        Expanded(
+          // Make better use of wide windows with a grid.
+          child: GridView(
+            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+              maxCrossAxisExtent: 400,
+              childAspectRatio: 400 / 80,
+            ),
+            children: [
+              for (var pair in appState.favorites)
+                ListTile(
+                  leading: IconButton(
+                    icon: const Icon(Icons.delete_outline,
+                        semanticLabel: 'Delete'),
+                    color: theme.colorScheme.primary,
+                    onPressed: () {
+                      appState.removeFavorite(pair);
+                    },
+                  ),
+                  title: Text(
+                    pair.asLowerCase,
+                    semanticsLabel: pair.asPascalCase,
+                  ),
+                ),
+            ],
           ),
+        ),
       ],
+    );
+  }
+}
+
+class HistoryListView extends StatefulWidget {
+  const HistoryListView({Key? key}) : super(key: key);
+
+  @override
+  State<HistoryListView> createState() => _HistoryListViewState();
+}
+
+class _HistoryListViewState extends State<HistoryListView> {
+  final _key = GlobalKey();
+
+  static const Gradient _maskingGradient = LinearGradient(
+    colors: [Colors.transparent, Colors.black],
+    stops: [0.0, 0.5],
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+  );
+
+  @override
+  Widget build(BuildContext context) {
+    final appState = context.watch<MyAppState>();
+    appState.historyListKey = _key;
+
+    return ShaderMask(
+      shaderCallback: (bounds) => _maskingGradient.createShader(bounds),
+      blendMode: BlendMode.dstIn,
+      child: AnimatedList(
+        key: _key,
+        reverse: true,
+        padding: const EdgeInsets.only(top: 100),
+        initialItemCount: appState.history.length,
+        itemBuilder: (context, index, animation) {
+          final pair = appState.history[index];
+          return SizeTransition(
+            sizeFactor: animation,
+            child: Center(
+              child: TextButton.icon(
+                onPressed: () {
+                  appState.toggleFavorite(pair);
+                },
+                icon: appState.favorites.contains(pair)
+                    ? const Icon(Icons.favorite, size: 12)
+                    : const SizedBox(),
+                label: Text(
+                  pair.asLowerCase,
+                  semanticsLabel: pair.asPascalCase,
+                ),
+              ),
+            ),
+          );
+        },
+      ),
     );
   }
 }
