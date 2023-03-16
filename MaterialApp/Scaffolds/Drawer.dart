@@ -1,3 +1,4 @@
+//drawer with simple snacBar
 import 'package:flutter/material.dart';
 
 void main() => runApp(const MyApp());
@@ -72,6 +73,14 @@ class AppDrawer extends StatelessWidget {
             title: const Text("Settings"),
             trailing: const Icon(Icons.arrow_circle_right),
             onTap: () {
+              final snackBar = SnackBar(
+                content: const Text("Settings Page"),
+                action: SnackBarAction(
+                  label: "Ok!",
+                  onPressed: () {},
+                ),
+              );
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);
               Navigator.pop(context);
             },
           ),
@@ -80,6 +89,14 @@ class AppDrawer extends StatelessWidget {
             title: const Text("Persons"),
             trailing: const Icon(Icons.arrow_circle_right),
             onTap: () {
+              final snackBar = SnackBar(
+                content: const Text("Persons Page"),
+                action: SnackBarAction(
+                  label: "Ok!",
+                  onPressed: () {},
+                ),
+              );
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);
               Navigator.pop(context);
             },
           ),
