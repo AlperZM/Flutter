@@ -49,7 +49,25 @@ class _FORMState extends State<FORM> {
     return Form(
       key: _formKey,
       child: Column(
-        children: <Widget>[],
+        children: <Widget>[
+          TextFormField(validator: (value) {
+            if (value == null || value.isEmpty) {
+              return "Please Enter Valid Name";
+            }
+            return null;
+          }),
+          const SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () {
+              if (_formKey.currentState!.validate()) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text("Processing Data")),
+                );
+              }
+            },
+            child: const Text("Submit"),
+          ),
+        ],
       ),
     );
   }
