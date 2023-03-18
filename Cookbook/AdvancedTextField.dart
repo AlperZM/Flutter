@@ -51,20 +51,22 @@ class TexFieldClass extends StatefulWidget {
 }
 
 class _TexFieldClassState extends State<TexFieldClass> {
-  final textController = TextEditingController();
+  final textController1 = TextEditingController();
+  final textController2 = TextEditingController();
   void _printLatestValue() {
-    print("First FormField inputs: ${textController.text}");
+    print("First FormField inputs: ${textController1.text}");
   }
 
   @override
   void initState() {
     super.initState();
-    textController.addListener(_printLatestValue);
+    textController1.addListener(_printLatestValue);
   }
 
   @override
   void dispose() {
-    textController.dispose();
+    textController1.dispose();
+    textController2.dispose();
     super.dispose();
   }
 
@@ -77,12 +79,43 @@ class _TexFieldClassState extends State<TexFieldClass> {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: TextFormField(
-              controller: textController,
+              controller: textController1,
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 hintText: "handling text",
               ),
             ),
+          ),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: TextFormField(
+              controller: textController2,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: "Retrieve text",
+              ),
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    content: Text(textController2.text),
+                  );
+                },
+              );
+            },
+            child: const Text("Show Result"),
+          ),
+          const SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () {
+              textController1.text = "";
+              textController2.text = "";
+            },
+            child: const Text("Reset"),
           ),
         ],
       ),
