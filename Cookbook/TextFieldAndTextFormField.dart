@@ -71,6 +71,23 @@ class _TexFieldClassState extends State<TexFieldClass> {
             ),
           ),
           const SizedBox(height: 20),
+          Container(
+              margin: const EdgeInsets.all(10),
+              child: const Text("check the console for handling")),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+            child: TextField(
+              onChanged: (text) {
+                print("onChanged: $text");
+              },
+              autofocus: true,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: "onChanged: simple handling form data",
+              ),
+            ),
+          ),
+          const SizedBox(height: 20),
           const FocusText(),
         ],
       ),
