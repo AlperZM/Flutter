@@ -57,9 +57,13 @@ class _TexFieldClassState extends State<TexFieldClass> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
+          Container(
+              margin: const EdgeInsets.all(10),
+              child: const Text("This TextField use autofocus:true ")),
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
             child: TextField(
+              autofocus: true,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 hintText: "This is TextField Widget",
@@ -67,14 +71,51 @@ class _TexFieldClassState extends State<TexFieldClass> {
             ),
           ),
           const SizedBox(height: 20),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-            child: TextFormField(
-              decoration: const InputDecoration(
-                border: UnderlineInputBorder(),
-                labelText: "This is TextFormField Widget",
-              ),
-            ),
+          const FocusText(),
+        ],
+      ),
+    );
+  }
+}
+
+class FocusText extends StatefulWidget {
+  const FocusText({super.key});
+  @override
+  State<FocusText> createState() => _FocusTextState();
+}
+
+class _FocusTextState extends State<FocusText> {
+  late FocusNode myFocusNode;
+  @override
+  void initState() {
+    super.initState();
+    myFocusNode = FocusNode();
+  }
+
+  @override
+  void dispose() {
+    myFocusNode.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        children: <Widget>[
+          TextField(
+            decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: "ElevatedButton Focus here"),
+            focusNode: myFocusNode,
+          ),
+          const SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () {
+              myFocusNode.requestFocus();
+            },
+            child: const Text("Focus TextForm"),
           ),
         ],
       ),
