@@ -17,25 +17,34 @@ class _HomePageAppState extends State<HomePageApp> {
       theme: isDark ? ThemeData.dark() : ThemeData.light(),
       home: Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.menu,
+              semanticLabel: "Menu",
+            ),
+          ),
           title: const Center(child: Text("SHRINE")),
           actions: <Widget>[
-            Center(
-              child: Text(
-                isDark ? "LIGHT" : "DARK",
-                style: TextStyle(
-                    fontSize: 20,
-                    color: isDark ? Colors.amberAccent : Colors.black),
-              ),
-            ),
             const SizedBox(width: 15),
-            Switch(
-                value: isDark,
-                activeColor: Colors.amber,
-                onChanged: (bool value) {
-                  setState(() {
-                    isDark = !isDark;
-                  });
-                }),
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.search, semanticLabel: "Search"),
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.tune, semanticLabel: "Filter"),
+            ),
+            IconButton(
+              onPressed: () {
+                setState(() {
+                  isDark = !isDark;
+                });
+              },
+              icon: isDark
+                  ? const Icon(Icons.light_mode, color: Colors.amber)
+                  : const Icon(Icons.dark_mode, color: Colors.black54),
+            ),
           ],
         ),
         body: const Center(child: HomePageClass()),
