@@ -1,5 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+const kShrinePink50 = Color(0xFFFEEAE6);
+const kShrinePink100 = Color(0xFFFEDBD0);
+const kShrinePink300 = Color(0xFFFBB8AC);
+const kShrinePink400 = Color(0xFFEAA4A4);
+const kShrineBrown900 = Color(0xFF442B2D);
+const kShrineErrorRed = Color(0xFFC5032B);
+const kShrineSurfaceWhite = Color(0xFFFFFBFA);
+const kShrineBackgroundWhite = Colors.white;
+
+final ThemeData _kShrineTheme = _buildShrineTheme();
+ThemeData _buildShrineTheme(){
+  final ThemeData base = ThemeData.light();
+  return base.copyWith(
+  colorScheme: base.colorScheme.copyWith(
+  primary: kShrinePink100,
+    onPrimary: kShrineBrown900,
+    secondary: kShrineBrown900,
+    error: kShrineErrorRed,
+  ),
+  );
+}
+
+
 
 void main() => runApp(const HomePageApp());
 
@@ -10,12 +33,12 @@ class HomePageApp extends StatefulWidget {
 }
 
 class _HomePageAppState extends State<HomePageApp> {
-  bool isDark = false;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: isDark ? ThemeData.dark() : ThemeData.light(),
+      theme: _kShrineTheme,
       home: Scaffold(
         appBar: AppBar(
           leading: IconButton(
@@ -36,16 +59,16 @@ class _HomePageAppState extends State<HomePageApp> {
               onPressed: () {},
               icon: const Icon(Icons.tune, semanticLabel: "Filter"),
             ),
-            IconButton(
-              onPressed: () {
-                setState(() {
-                  isDark = !isDark;
-                });
-              },
-              icon: isDark
-                  ? const Icon(Icons.light_mode, color: Colors.amber)
-                  : const Icon(Icons.dark_mode, color: Colors.black54),
-            ),
+//             IconButton(
+//               onPressed: () {
+//                 setState(() {
+//                   isDark = !isDark;
+//                 });
+//               },
+//               icon: isDark
+//                   ? const Icon(Icons.light_mode, color: Colors.amber)
+//                   : const Icon(Icons.dark_mode, color: Colors.black54),
+//             ),
           ],
         ),
         body: const Center(child: HomePageClass()),
