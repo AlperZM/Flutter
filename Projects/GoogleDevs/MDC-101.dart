@@ -51,23 +51,57 @@ class LoginPageClass extends StatefulWidget {
 }
 
 class _LoginPageClassState extends State<LoginPageClass> {
+  final _usernameController = TextEditingController();
+  final _passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Center(
-    child: ListView(
-    padding: const EdgeInsets.symmetric(horizontal: 24),
-      children: <Widget>[
-        const SizedBox(height: 80),
-        Column(
-          children:const <Widget>[
-            Icon(Icons.diamond_outlined,color: Colors.indigo, size: 50),
-            SizedBox(height: 20),
-            Text("SHRINE")
-          ]
-        ),
-      ]
-    ),
+      child: ListView(
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          children: <Widget>[
+            const SizedBox(height: 80),
+            Column(children: <Widget>[
+              const Icon(Icons.diamond_outlined,
+                  color: Colors.indigo, size: 50),
+              const SizedBox(height: 20),
+              const Text("SHRINE"),
+              const SizedBox(height: 20),
+              TextField(
+                controller: _usernameController,
+                decoration: const InputDecoration(
+                  filled: true,
+                  labelText: "User Name",
+                ),
+              ),
+              const SizedBox(height: 20),
+              TextField(
+                controller: _passwordController,
+                decoration: const InputDecoration(
+                  filled: true,
+                  labelText: "PassWord",
+                ),
+                obscureText: true,
+              ),
+              const SizedBox(height: 20),
+              OverflowBar(
+                alignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  TextButton(
+                    onPressed: () {
+                      _usernameController.clear();
+                      _passwordController.clear();
+                    },
+                    child: const Text("Cancel"),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {},
+                    child: const Text("Next"),
+                  ),
+                ],
+              ),
+            ]),
+          ]),
     );
   }
 }
-
