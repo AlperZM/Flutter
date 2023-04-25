@@ -10,10 +10,11 @@ class StarterApp extends StatefulWidget {
 
 class _StarterAppState extends State<StarterApp> {
   bool isSelected = false;
-  
-  void selection(){
+
+  void selection() {
     isSelected = !isSelected;
   }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -30,48 +31,56 @@ class _StarterAppState extends State<StarterApp> {
               ),
               child: ListView(
                 padding: const EdgeInsets.all(10),
-                children:<Widget>[
-                  const  Text("Starter App", style: TextStyle(fontSize: 18)),
-                 const   Text("Subtitle"),
-                 const   Divider(
+                children: <Widget>[
+                  const Text("Starter App", style: TextStyle(fontSize: 18)),
+                  const Text("Subtitle"),
+                  const Divider(
                     indent: 0,
                     endIndent: 0,
                   ),
                   ListTile(
-                    leading: const  Icon(Icons.favorite),
-                    title: const  Text("Product 1"),
-                    onTap: (){selection();},
+                    leading: const Icon(Icons.favorite),
+                    title: const Text("Product 1"),
+                    onTap: () {
+                      selection();
+                    },
                   ),
                   ListTile(
-                    leading:const   Icon(Icons.favorite),
-                   title:const   Text("Product 2"),
-                    onTap: (){selection();}
-                  ),
+                      leading: const Icon(Icons.favorite),
+                      title: const Text("Product 2"),
+                      onTap: () {
+                        selection();
+                      }),
                   ListTile(
-                   leading:const   Icon(Icons.favorite),
-                  title:const   Text("Product 3"),
-                    onTap: (){selection();}
-                  ),
+                      leading: const Icon(Icons.favorite),
+                      title: const Text("Product 3"),
+                      onTap: () {
+                        selection();
+                      }),
                   ListTile(
-                   leading:const   Icon(Icons.favorite),
-                   title:const   Text("Product 4"),
-                    onTap: (){selection();}
-                  ),
+                      leading: const Icon(Icons.favorite),
+                      title: const Text("Product 4"),
+                      onTap: () {
+                        selection();
+                      }),
                   ListTile(
-                    const  leading: Icon(Icons.favorite),
-                    const  title: Text("Product 5"),
-                    onTap: (){selection();}
-                  ),
+                      leading: const Icon(Icons.favorite),
+                      title: const Text("Product 5"),
+                      onTap: () {
+                        selection();
+                      }),
                   ListTile(
-                    const  leading: Icon(Icons.favorite),
-                    const  title: Text("Product 6"),
-                    onTap: (){selection();}
-                  ),
+                      leading: const Icon(Icons.favorite),
+                      title: const Text("Product 6"),
+                      onTap: () {
+                        selection();
+                      }),
                   ListTile(
-                    const  leading: Icon(Icons.favorite),
-                    const  title: Text("Product 7"),
-                    onTap: (){selection();}
-                  ),
+                      leading: const Icon(Icons.favorite),
+                      title: const Text("Product 7"),
+                      onTap: () {
+                        selection();
+                      }),
                 ],
               ),
             ),
