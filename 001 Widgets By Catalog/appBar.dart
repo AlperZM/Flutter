@@ -19,13 +19,63 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ButtonStyle style = TextButton.styleFrom(
+      foregroundColor: Theme.of(context).colorScheme.onPrimary,
+    );
     return Scaffold(
       appBar: AppBar(
-        leading: const Icon(Icons.favorite_border_outlined),
+        leading: IconButton(
+          tooltip: "Leading Area",
+          icon: const Icon(
+            Icons.favorite_border_outlined,
+          ),
+          onPressed: () {},
+        ),
         title: const Center(child: Text("AppBar HomePage")),
         actions: <Widget>[
-          IconButton(icon: const Icon(Icons.alarm), onPressed: () {}),
-          IconButton(icon: const Icon(Icons.navigation), onPressed: () {}),
+          IconButton(
+              tooltip: "Action > IconButton",
+              icon: const Icon(Icons.alarm),
+              onPressed: () {}),
+          IconButton(
+              tooltip: "Actions > Navigation",
+              icon: const Icon(Icons.navigation),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute<void>(
+                  builder: (BuildContext context) {
+                    return Scaffold(
+                      appBar: AppBar(
+                        centerTitle: true,
+                        title: const Text('SecondPage AppBar'),
+                        actions: <Widget>[
+                          TextButton(
+                              style: style,
+                              child: const Text("SnackBar"),
+                              onPressed: () {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                      content: Text("This is a Snackbar")),
+                                );
+                              }),
+                          TextButton(
+                              style: style,
+                              child: const Text("Console"),
+                              onPressed: () {
+                                print("Pressed an Action Button");
+                              }),
+                          const SizedBox(width: 20),
+                        ],
+                      ),
+                      body: const Center(
+                        child: Text(
+                          'This is the SecondPage',
+                          style: TextStyle(fontSize: 24),
+                        ),
+                      ),
+                    );
+                  },
+                ));
+              }),
           const SizedBox(width: 20),
         ],
       ),
