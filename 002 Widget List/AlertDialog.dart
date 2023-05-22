@@ -95,6 +95,13 @@ class AlertDialogDemo extends StatelessWidget {
             _dialogBuilder(context);
           },
         ),
+        const SizedBox(height: 20),
+        ElevatedButton(
+          child: const Text("Custom Alert Dialog"),
+          onPressed: () {
+            _customDialogBuilder(context);
+          },
+        ),
       ],
     );
   }
@@ -107,7 +114,7 @@ Future<void> _dialogBuilder(BuildContext context) {
       barrierColor: Colors.red,
       builder: (BuildContext context) {
         return AlertDialog(
-          alignment: Alignment.topCenter,
+          alignment: Alignment.center,
           title: const Text("Basic Alert Dialog"),
           content: const Text("Define Future<void> _dialogBuilder\n"
               "and add it an ElevatedButton"),
@@ -131,6 +138,55 @@ Future<void> _dialogBuilder(BuildContext context) {
               },
             ),
           ],
+        );
+      });
+}
+
+Future<void> _customDialogBuilder(BuildContext context) {
+  return showDialog<void>(
+      context: context,
+
+      //BACKGROUND COLOR FOR THE REST OF THE PAGE
+      barrierColor: Colors.blue,
+      barrierDismissible: false, // must tap the actions button
+      builder: (BuildContext context) {
+        return AlertDialog(
+          //SET PADDING FOR CONTENT
+          contentPadding: const EdgeInsets.all(16),
+
+          //SET BACKGROUND COLOR FOR ALERT DIALOG
+          backgroundColor: Colors.yellowAccent,
+
+          // SET ALIGNMENT OF THE ALERT DIALOG
+          alignment: Alignment.bottomCenter,
+          title: const Text("This Alert Widget is customized!"),
+          content: const Text("Changed background\n"
+              "Changed dialogs alignment\n"
+              "Changed actions buttons alignment...\n"),
+          actions: <Widget>[
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: Theme.of(context).textTheme.labelLarge,
+              ),
+              child: const Text('Disable'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: Theme.of(context).textTheme.labelLarge,
+              ),
+              child: const Text('Enable'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+          //SET THE ALINGMENT FOR THE ACTIONS BUTTON
+          actionsPadding: const EdgeInsets.all(16),
+          actionsAlignment: MainAxisAlignment.spaceAround,
+          buttonPadding: const EdgeInsets.all(16),
         );
       });
 }
