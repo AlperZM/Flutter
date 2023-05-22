@@ -62,6 +62,7 @@ class AlertDialogDemo extends StatelessWidget {
               barrierDismissible: true, // user must tap button!
               barrierColor: Colors.teal,
               builder: (BuildContext context) => AlertDialog(
+                semanticLabel: "Simple Dialog",
                 // Set background color
                 backgroundColor: Colors.amberAccent,
                 title: const Text("Set Actions Button Details"),
@@ -84,6 +85,44 @@ class AlertDialogDemo extends StatelessWidget {
                 //Set Action Buttons Details.
                 actionsPadding: const EdgeInsets.all(16),
                 actionsAlignment: MainAxisAlignment.center,
+              ),
+            );
+          },
+        ),
+        const SizedBox(height: 20),
+        ElevatedButton(
+          child: const Text("Scrollable Alert Dialog"),
+          onPressed: () {
+            showDialog<String>(
+              context: context,
+              barrierDismissible: false, // user must tap button!
+              barrierColor: Colors.purple,
+              builder: (BuildContext context) => AlertDialog(
+                shadowColor: Colors.white,
+                elevation: 50,
+                semanticLabel: "Scrollable Dialog",
+                scrollable: true,
+                title: const Text("Scrollable Alert Dialog Title"),
+                content: const Text("Scrollable\n"
+"Alert\n""Dialog\n""Content\n""Scrollable\n""Alert\n""Dialog\n""Content\n""Scrollable\n"
+"Alert\n""Dialog\n""Content\n""Scrollable\n""Alert\n""Dialog\n""Content\n"
+"Scrollable\n""Alert\n""Dialog\n""Content\n""Scrollable\n""Alert\n"
+"Dialog\n""Content\n""Scrollable\n""Alert\n""Dialog\n""Content\n"
+"Scrollable\n""Alert\n""Dialog\n""Content\n"),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context, 'OK');
+                    },
+                    child: const Text("OK"),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context, 'Cancel');
+                    },
+                    child: const Text("Cancel"),
+                  ),
+                ],
               ),
             );
           },
@@ -114,8 +153,9 @@ Future<void> _dialogBuilder(BuildContext context) {
       barrierColor: Colors.red,
       builder: (BuildContext context) {
         return AlertDialog(
+          semanticLabel: "Second Alert Dialog",
           alignment: Alignment.center,
-          title: const Text("Basic Alert Dialog"),
+          title: const Text("Second Alert Dialog"),
           content: const Text("Define Future<void> _dialogBuilder\n"
               "and add it an ElevatedButton"),
           actions: <Widget>[
@@ -151,6 +191,10 @@ Future<void> _customDialogBuilder(BuildContext context) {
       barrierDismissible: false, // must tap the actions button
       builder: (BuildContext context) {
         return AlertDialog(
+          semanticLabel: "Customized Alert Dialog",
+          // SET ELEVATION OF ALERT DIALOG
+          elevation: 50,
+
           //SET PADDING FOR CONTENT
           contentPadding: const EdgeInsets.all(16),
 
@@ -159,6 +203,12 @@ Future<void> _customDialogBuilder(BuildContext context) {
 
           // SET ALIGNMENT OF THE ALERT DIALOG
           alignment: Alignment.bottomCenter,
+
+          //ICON AREA
+          iconPadding: const EdgeInsets.symmetric(horizontal: 32, vertical: 20),
+          iconColor: Colors.red,
+          icon: const Icon(Icons.warning_amber, size: 30),
+
           title: const Text("This Alert Widget is customized!"),
           content: const Text("Changed background\n"
               "Changed dialogs alignment\n"
