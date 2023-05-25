@@ -11,9 +11,10 @@ class AnimatedContainerApp extends StatefulWidget {
 class _AnimatedContainerAppState extends State<AnimatedContainerApp> {
   bool selected = false;
   int time = 2;
-  Color colors = Colors.red;
-  double wi = 200;
-  int hei = 100;
+  Color cols = Colors.red;
+  double wi = 200.0;
+  double hei = 100.0;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -28,14 +29,50 @@ class _AnimatedContainerAppState extends State<AnimatedContainerApp> {
             });
           },
           child: Center(
-            child: AnimatedContainer(
-              width: selected ? 200.0 : 100.0,
-              height: selected ? 100.0 : 200.0,
-              color: selected ? Colors.red : Colors.blue,
-              alignment:
-                  selected ? Alignment.center : AlignmentDirectional.topCenter,
-              duration: const Duration(seconds: 2),
-              curve: Curves.fastOutSlowIn,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                AnimatedContainer(
+                  width: wi,
+                  height: hei,
+                  color: cols,
+                  alignment: selected
+                      ? Alignment.center
+                      : AlignmentDirectional.topCenter,
+                  duration: const Duration(seconds: 2),
+                  curve: Curves.fastOutSlowIn,
+                ),
+                const SizedBox(height: 20),
+                ElevatedButton(
+                  child: const Text("Switch Width: 200 / 100"),
+                  onPressed: () {
+                    setState(() {
+                      wi == 200.0 ? wi = 100.0 : wi = 200.0;
+                    });
+                  },
+                ),
+                const SizedBox(width: 10),
+                ElevatedButton(
+                  child: const Text("Switch height: 200 / 100"),
+                  onPressed: () {
+                    setState(() {
+                      hei == 200.0 ? hei = 100.0 : hei = 200.0;
+                    });
+                  },
+                ),
+                const SizedBox(width: 10),
+                ElevatedButton(
+                  child: const Text("Switch Color: red / blue"),
+                  onPressed: () {
+                    setState(() {
+                      cols == Colors.red
+                          ? cols = Colors.red
+                          : cols = Colors.blue;
+                      print(cols);
+                    });
+                  },
+                ),
+              ],
             ),
           ),
         ),
