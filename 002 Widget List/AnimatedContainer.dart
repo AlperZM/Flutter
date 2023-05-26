@@ -11,7 +11,7 @@ class AnimatedContainerApp extends StatefulWidget {
 class _AnimatedContainerAppState extends State<AnimatedContainerApp> {
   bool selected = false;
   int time = 2;
-  Color cols = Colors.red;
+  var cols = Colors.red;
   double wi = 200.0;
   double hei = 100.0;
 
@@ -51,7 +51,7 @@ class _AnimatedContainerAppState extends State<AnimatedContainerApp> {
                     });
                   },
                 ),
-                const SizedBox(width: 10),
+                const SizedBox(height: 10),
                 ElevatedButton(
                   child: const Text("Switch height: 200 / 100"),
                   onPressed: () {
@@ -60,15 +60,22 @@ class _AnimatedContainerAppState extends State<AnimatedContainerApp> {
                     });
                   },
                 ),
-                const SizedBox(width: 10),
+                const SizedBox(height: 10),
                 ElevatedButton(
                   child: const Text("Switch Color: red / blue"),
                   onPressed: () {
                     setState(() {
-                      cols == Colors.red
-                          ? cols = Colors.red
-                          : cols = Colors.blue;
-                      print(cols);
+                      selected = !selected;
+                      cols = selected ? Colors.blue : Colors.red;
+                    });
+                  },
+                ),
+                const SizedBox(height: 10),
+                ElevatedButton(
+                  child: const Text("Switch duration: 2 / 1"),
+                  onPressed: () {
+                    setState(() {
+                      time == 2 ? time = 1 : time = 2;
                     });
                   },
                 ),
