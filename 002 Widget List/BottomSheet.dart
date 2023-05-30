@@ -87,6 +87,38 @@ class BottomSheetDemo extends StatelessWidget {
               );
             },
           ),
+          const SizedBox(height: 20),
+          ElevatedButton(
+            child: const Text("Modal Bottom Sheet"),
+            onPressed: () {
+              showModalBottomSheet<void>(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return Container(
+                      height: 300,
+                      color: Colors.teal,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          const Text("""Modal Bottom Sheet:
+                        to close this, you can press any space or "close" button,
+                        alternate for persistentBottomSheet,
+                        like warnings or informations, alert you can use this.
+                        """, style: TextStyle(fontSize: 18)),
+                          const SizedBox(height: 20),
+                          ElevatedButton(
+                            child: const Text("Close Bottom Sheet"),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                          ),
+                        ],
+                      ),
+                    );
+                  });
+            },
+          ),
         ],
       ),
     );
