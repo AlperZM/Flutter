@@ -107,6 +107,54 @@ class CardDemos extends StatelessWidget {
             ),
           ],
         ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Container(
+              width: 220,
+              height: 220,
+              margin: const EdgeInsets.all(10),
+              child: Card(
+                elevation: 8,
+                shadowColor: Colors.green,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    const ListTile(
+                      leading: Icon(Icons.photo, size: 42, color: Colors.green),
+                      title: Text("Photo Tour"),
+                      subtitle: Text("Lets explore magnificient landscapes"),
+                    ),
+                    Container(
+                      width: 220,
+                      height: 100,
+                      color: Colors.greenAccent,
+                      child: const Text("Banner Area"),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: <Widget>[
+                        Badge.count(
+                          count: 157,
+                          child: const Icon(
+                            Icons.star_border_outlined,
+                            size: 32,
+                            color: Colors.green,
+                          ),
+                        ),
+                        ElevatedButton(
+                          child: const Text("Join"),
+                          onPressed: () {},
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ],
     );
   }
