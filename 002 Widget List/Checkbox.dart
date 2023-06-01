@@ -31,6 +31,8 @@ class CheckboxDemo extends StatefulWidget {
 
 class _CheckboxDemoState extends State<CheckboxDemo> {
   bool isChecked = false;
+  bool isChecked2 = false;
+  bool isCh3 = false;
   @override
   Widget build(BuildContext context) {
     Color getColor(Set<MaterialState> states) {
@@ -62,6 +64,55 @@ class _CheckboxDemoState extends State<CheckboxDemo> {
               },
             ),
             const Text("Learn Dart"),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Checkbox(
+              value: isChecked2,
+              activeColor: Colors.green,
+              checkColor: Colors.blue,
+              hoverColor: Colors.orange,
+              focusColor: Colors.pink,
+              onChanged: (bool? value) {
+                setState(() {
+                  isChecked2 = value!;
+                });
+              },
+            ),
+            const Text("Learn Flutter"),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  isCh3 = !isCh3;
+                });
+              },
+              child: Container(
+                width: 150,
+                height: 30,
+                color: Colors.teal[100],
+                child: Row(
+                  children: <Widget>[
+                    Checkbox(
+                      value: isCh3,
+                      onChanged: (bool? value) {
+                        setState() {
+                          isCh3 = value!;
+                        }
+                      },
+                      activeColor: Colors.amber,
+                    ),
+                    const Text("Checkbox3"),
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       ],
