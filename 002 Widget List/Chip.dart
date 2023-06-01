@@ -9,6 +9,9 @@ class ChipApp extends StatefulWidget {
 }
 
 class _ChipAppState extends State<ChipApp> {
+  int inputs = 3;
+  int? selectedIndex;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -51,19 +54,52 @@ class _ChipAppState extends State<ChipApp> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  InputChip(
-                      backgroundColor: Colors.amberAccent,
-                      avatar: const CircleAvatar(
-                        backgroundColor: Colors.tealAccent,
-                        child: Icon(Icons.person),
-                      ),
-                      label: const Text("Input 1"),
-                      selected: false,
-                      onSelected: (bool selected) {
-                        setState(() {
-                          selected ? false : true;
-                        });
-                      }),
+                  Wrap(
+                    alignment: WrapAlignment.center,
+                    spacing: 10,
+                    children: List<Widget>.generate(
+                      inputs,
+                      (int index) {
+                        return InputChip(
+                          backgroundColor: Colors.blueAccent[100],
+                          checkmarkColor: Colors.green,
+                          deleteButtonTooltipMessage: "Remove",
+                          deleteIcon: const Icon(Icons.delete),
+                          deleteIconColor: Colors.red,
+                          selectedColor: Colors.lime,
+                          avatar: CircleAvatar(
+                            backgroundColor: Colors.limeAccent,
+                            child: Text("$index"),
+                          ),
+                          label: Text("Input $index"),
+                          selected: selectedIndex == index,
+                          onSelected: (bool selected) {
+                            setState(() {
+                              if (selectedIndex == index) {
+                                selectedIndex = null;
+                              } else {
+                                selectedIndex = index;
+                              }
+                            });
+                          },
+                          onDeleted: () {
+                            setState(() {
+                              inputs = inputs - 1;
+                            });
+                          },
+                        );
+                      },
+                    ).toList(),
+                  ),
+                  const SizedBox(width: 15),
+                  ElevatedButton(
+                    child: const Text("Reset"),
+                    onPressed: () {
+                      setState(() {
+                        inputs = 3;
+                      });
+                    },
+                  ),
                 ],
               ),
             ],
