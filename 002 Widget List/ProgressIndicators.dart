@@ -120,6 +120,55 @@ class _IndicatorsState extends State<Indicators> with TickerProviderStateMixin {
                   }),
             ],
           ),
+          const SizedBox(height: 20),
+          Text(
+            "Linear progress indicator with a fixed color",
+            style: Theme.of(context).textTheme.bodyMedium,
+          ),
+          LinearProgressIndicator(
+            backgroundColor: Theme.of(context).colorScheme.secondary,
+            color: Colors.red,
+            minHeight: 3,
+            value: controller.value,
+            semanticsLabel: "Linear progress indicator",
+          ),
+          const SizedBox(height: 20),
+          Text("Linear Proggres Indicator with pause option",
+              style: Theme.of(context).textTheme.bodyMedium),
+          LinearProgressIndicator(
+            color: Theme.of(context).colorScheme.secondary,
+            backgroundColor: Colors.black,
+            minHeight: 6,
+            value: controllerCirc2.value,
+            semanticsLabel: "Linear Progress with Switch",
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Container(
+                padding: const EdgeInsets.all(20),
+                child: Text(
+                  "Linear Circular Progres",
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
+              ),
+              Switch(
+                  value: determinate,
+                  onChanged: (bool value) {
+                    setState(() {
+                      determinate = value;
+                      if (determinate) {
+                        controllerCirc2.stop();
+                      } else {
+                        controllerCirc2
+                          ..forward(from: controllerCirc2.value)
+                          ..repeat();
+                      }
+                    });
+                  }),
+            ],
+          ),
         ],
       ),
     );
