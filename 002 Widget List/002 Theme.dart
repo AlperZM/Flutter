@@ -9,40 +9,47 @@ class ThemeApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         colorScheme: ColorScheme.fromSwatch().copyWith(
-          secondary: Colors.green,
+          primary: Colors.amber,
+          secondary: Colors.teal,
         ),
-        textTheme: const TextTheme(bodyMedium: TextStyle(color: Colors.purple)),
+        textTheme: const TextTheme(
+            bodyMedium: TextStyle(color: Colors.red, fontSize: 22)),
+        iconTheme: const IconThemeData(
+          size: 40,
+          color: Colors.red,
+        ),
       ),
-      debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(title: const Center(child: Text("Theme App"))),
+        appBar: AppBar(title: const Text("Theme")),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              const Text("This is a text"),
+              ElevatedButton(
+                child: const Text("buton"),
+                onPressed: () {},
+              ),
+              const SizedBox(height: 20),
+              const Row(
+                children: [
+                  Icon(Icons.favorite),
+                  SizedBox(width: 20),
+                  Icon(Icons.abc),
+                ],
+              ),
+              const SizedBox(height: 20),
               Container(
-                margin: const EdgeInsets.all(15),
                 width: 100,
                 height: 100,
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.secondary,
-                  border: Border.all(width: 1),
-                ),
+                color: ColorScheme.fromSwatch().copyWith().secondary,
               ),
-              Container(
-                margin: const EdgeInsets.all(15),
-                width: 100,
-                height: 100,
-                decoration: BoxDecoration(
-                  border: Border.all(width: 1),
-                ),
-              ),
+              const SizedBox(height: 20),
+              const Text("demo theme"),
             ],
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          child: const Icon(Icons.favorite),
+          child: Icon(Icons.add, IconThemeData),
           onPressed: () {},
         ),
       ),
