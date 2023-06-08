@@ -25,14 +25,13 @@ class DemoApp extends StatelessWidget {
     return Column(
       children: <Widget>[
         DataTable(
-          // set the table border
+ //---------------> set the table border
           border: TableBorder.all(
               width: 1,
               style: BorderStyle.solid,
               borderRadius: BorderRadius.circular(5)),
-          //set the colum spacing
+//------------->  set the colum spacing           
           columnSpacing: 50,
-          
           sortColumnIndex: 0,
           sortAscending: true,
           columns: const [
@@ -43,13 +42,19 @@ class DemoApp extends StatelessWidget {
             ),
             DataColumn(label: Icon(Icons.flutter_dash)),
           ],
-          rows: const [
-            DataRow(selected: true, cells: [
-              DataCell(Text("Dash")),
-              DataCell(Text("2023")),
-              DataCell(Icon(Icons.flutter_dash_outlined)),
+          rows: [
+            DataRow(
+// -------------> set row color 
+              color: MaterialStateProperty.all(Colors.green[100]),
+              
+              cells: const[
+             DataCell(Text("Dash")),
+             DataCell(Text("2023")),
+             DataCell(Icon(Icons.flutter_dash_outlined)),
             ]),
-            DataRow(cells: [
+            DataRow(
+              color: MaterialStateProperty.all(Colors.orange[100]),
+              cells:const [
               DataCell(Text("Gopher")),
               DataCell(Text("2023")),
               DataCell(Icon(Icons.dashboard)),
