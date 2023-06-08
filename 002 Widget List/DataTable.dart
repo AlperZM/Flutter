@@ -25,10 +25,18 @@ class DemoApp extends StatelessWidget {
     return Column(
       children: <Widget>[
         DataTable(
+          // set the table border
+          border: TableBorder.all(
+              width: 1,
+              style: BorderStyle.solid,
+              borderRadius: BorderRadius.circular(5)),
+          //set the colum spacing
+          columnSpacing: 50,
+          
           sortColumnIndex: 0,
           sortAscending: true,
           columns: const [
-            DataColumn(label: Text("Name")),
+            DataColumn(label: Expanded(child: Text("Name"))),
             DataColumn(
               label: Text("Year"),
               numeric: true,
@@ -46,6 +54,74 @@ class DemoApp extends StatelessWidget {
               DataCell(Text("2023")),
               DataCell(Icon(Icons.dashboard)),
             ]),
+          ],
+        ),
+        const SizedBox(height: 20),
+        const Text("Demo Table",
+            style: TextStyle(fontSize: 22, color: Colors.red)),
+        DataTable(
+          sortColumnIndex: 0,
+          sortAscending: true,
+          columns: const <DataColumn>[
+            DataColumn(
+                label: Text("Langulage",
+                    style: TextStyle(fontSize: 20, color: Colors.blue))),
+            DataColumn(
+                label: Text("Year",
+                    style: TextStyle(fontSize: 20, color: Colors.blue))),
+            DataColumn(
+                label: Text("Icon",
+                    style: TextStyle(fontSize: 20, color: Colors.blue))),
+            DataColumn(
+                label: Text("Color",
+                    style: TextStyle(fontSize: 20, color: Colors.blue))),
+          ],
+          rows: <DataRow>[
+            DataRow(
+              cells: <DataCell>[
+                const DataCell(Text("HTML")),
+                const DataCell(Text("1990")),
+                const DataCell(Icon(Icons.html)),
+                DataCell(Container(
+                  width: 20,
+                  height: 20,
+                  color: Colors.red,
+                )),
+              ],
+            ),
+            DataRow(
+              cells: <DataCell>[
+                const DataCell(Text("CSS")),
+                const DataCell(Text("1992")),
+                const DataCell(Icon(Icons.css)),
+                DataCell(Container(width: 20, height: 20, color: Colors.orange))
+              ],
+            ),
+            DataRow(
+              cells: <DataCell>[
+                const DataCell(Text("javaScript")),
+                const DataCell(Text("1993")),
+                const DataCell(Icon(Icons.javascript_outlined)),
+                DataCell(
+                    Container(width: 20, height: 20, color: Colors.yellow)),
+              ],
+            ),
+            DataRow(
+              cells: <DataCell>[
+                const DataCell(Text("Dart")),
+                const DataCell(Text("2000")),
+                const DataCell(Icon(Icons.flutter_dash_sharp)),
+                DataCell(Container(width: 20, height: 20, color: Colors.blue))
+              ],
+            ),
+            DataRow(
+              cells: <DataCell>[
+                const DataCell(Text("Flutter")),
+                const DataCell(Text("2001")),
+                const DataCell(Icon(Icons.flutter_dash_rounded)),
+                DataCell(Container(width: 20, height: 20, color: Colors.teal)),
+              ],
+            ),
           ],
         ),
       ],
