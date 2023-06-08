@@ -25,13 +25,24 @@ class DemoApp extends StatelessWidget {
     return Column(
       children: <Widget>[
         DataTable(
- //---------------> set the table border
+//---------------> set the table border
           border: TableBorder.all(
               width: 1,
               style: BorderStyle.solid,
               borderRadius: BorderRadius.circular(5)),
-//------------->  set the colum spacing           
+//------------->  set the colum spacing
           columnSpacing: 50,
+
+// ---------------> set dataTextStle
+          dataTextStyle: const TextStyle(
+              fontSize: 18, color: Colors.brown, fontWeight: FontWeight.bold),
+
+          //----------> Set Header Color
+          headingRowColor: MaterialStateProperty.all(Colors.tealAccent),
+
+// -----------> Divider thickness
+          dividerThickness: 2,
+
           sortColumnIndex: 0,
           sortAscending: true,
           columns: const [
@@ -44,21 +55,20 @@ class DemoApp extends StatelessWidget {
           ],
           rows: [
             DataRow(
-// -------------> set row color 
-              color: MaterialStateProperty.all(Colors.green[100]),
-              
-              cells: const[
-             DataCell(Text("Dash")),
-             DataCell(Text("2023")),
-             DataCell(Icon(Icons.flutter_dash_outlined)),
-            ]),
+// -------------> set row color
+                color: MaterialStateProperty.all(Colors.green[100]),
+                cells: const [
+                  DataCell(Text("Dash")),
+                  DataCell(Text("2023")),
+                  DataCell(Icon(Icons.flutter_dash_outlined)),
+                ]),
             DataRow(
-              color: MaterialStateProperty.all(Colors.orange[100]),
-              cells:const [
-              DataCell(Text("Gopher")),
-              DataCell(Text("2023")),
-              DataCell(Icon(Icons.dashboard)),
-            ]),
+                color: MaterialStateProperty.all(Colors.orange[100]),
+                cells: const [
+                  DataCell(Text("Gopher")),
+                  DataCell(Text("2023")),
+                  DataCell(Icon(Icons.dashboard)),
+                ]),
           ],
         ),
         const SizedBox(height: 20),
