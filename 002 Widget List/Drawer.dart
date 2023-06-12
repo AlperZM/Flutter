@@ -30,8 +30,13 @@ class DrawerWidget extends StatelessWidget {
             decoration: BoxDecoration(
               color: Colors.teal,
             ),
-            child: Text("Draver header",
-                style: TextStyle(color: Colors.white, fontSize: 24)),
+            child: Column(
+              children: <Widget>[
+                Text("Drawer header",
+                    style: TextStyle(color: Colors.white, fontSize: 24)),
+                Text("Default Drawer")
+              ],
+            ),
           ),
           ListTile(
             leading: const Icon(Icons.message),
@@ -62,6 +67,18 @@ class EndDrawerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+// ----------> Set semanticlabel
+      semanticLabel: "Customized right drawer",
+
+// -------> Set background Color for drawer
+      backgroundColor: Colors.amber,
+
+// ----------> Set elevation
+      elevation: 32,
+
+//------>set the shadow color for elevations shadow
+      shadowColor: Colors.red,
+
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
@@ -69,8 +86,13 @@ class EndDrawerWidget extends StatelessWidget {
             decoration: BoxDecoration(
               color: Colors.teal,
             ),
-            child: Text("Draver header",
-                style: TextStyle(color: Colors.white, fontSize: 24)),
+            child: Column(
+              children: <Widget>[
+                Text("Drawer header",
+                    style: TextStyle(color: Colors.white, fontSize: 24)),
+                Text("Customized Drawer")
+              ],
+            ),
           ),
           ListTile(
             leading: const Icon(Icons.message),
