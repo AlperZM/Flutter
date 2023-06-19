@@ -30,14 +30,14 @@ class _FormDemoState extends State<FormDemo> {
       width: 300,
       height: 400,
       decoration: BoxDecoration(
-        color: Colors.blueGrey[100],
+        color: Colors.white,
         border: Border.all(width: 1),
         borderRadius: BorderRadius.circular(16),
         boxShadow: const <BoxShadow>[
           BoxShadow(
-            color: Colors.tealAccent,
+            color: Colors.grey,
             offset: Offset(1, 1),
-            blurRadius: 5,
+            blurRadius: 15,
             spreadRadius: 5,
           ),
         ],
@@ -52,6 +52,36 @@ class _FormDemoState extends State<FormDemo> {
               child: TextFormField(
                 decoration: const InputDecoration(
                   hintText: "Enter Your Email",
+                  label: Text("E-Mail"),
+                ),
+                validator: (String? value) {
+                  if (value == null || value.isEmpty) {
+                    return "Please enter some text";
+                  }
+                  return null;
+                },
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.all(16),
+              child: ElevatedButton(
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {}
+                },
+                child: const Text("Submit"),
+              ),
+            ),
+            const Divider(
+              thickness: 3,
+              indent: 30,
+              endIndent: 30,
+            ),
+            Container(
+              padding: const EdgeInsets.all(10),
+              child: TextFormField(
+                decoration: const InputDecoration(
+                  hintText: "Enter Id",
+                  label: Text("ID"),
                 ),
                 validator: (String? value) {
                   if (value == null || value.isEmpty) {
