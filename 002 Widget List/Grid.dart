@@ -53,7 +53,6 @@ class GridDemo extends StatelessWidget {
                   ),
                   Container(
                     color: Colors.teal[400],
-                    child: const Text("Default"),
                   ),
                   Container(
                     color: Colors.amber[400],
@@ -108,6 +107,29 @@ class GridDemo extends StatelessWidget {
                   ),
                 ],
               ),
+            ),
+            const SizedBox(width: 20),
+            Container(
+              margin: const EdgeInsets.all(10),
+              width: 210,
+              height: 210,
+              decoration: BoxDecoration(
+                border: Border.all(width: 1),
+                borderRadius: BorderRadius.circular(5),
+              ),
+              child: GridView.builder(
+                  padding: const EdgeInsets.all(5),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisSpacing: 5,
+                    mainAxisSpacing: 5,
+                    crossAxisCount: 3,
+                  ),
+                  itemCount: 30,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Container(
+                        color: Colors.orange,
+                        child: Center(child: Text("$index")));
+                  }),
             ),
           ],
         ),
