@@ -42,6 +42,24 @@ class HeroExample extends StatelessWidget {
             ),
             onTap: () => _gotoRedPage(context),
             title: const Text("Second Hero Widget")),
+        const SizedBox(height: 20.0),
+        ListTile(
+          leading: const Hero(
+            tag: "hero-flutter",
+            child: FlutterLogo(size: 50),
+          ),
+          onTap: () => _flutterLogoPage(context),
+          title: const Text("FlutterLogo as a hero horizontal"),
+        ),
+        const SizedBox(height: 20.0),
+        ListTile(
+          leading: const Hero(
+            tag: "hero-flutter2",
+            child: FlutterLogo(size: 50),
+          ),
+          onTap: () => _flutterLogoPage2(context),
+          title: const Text("FlutterLogo 2"),
+        ),
       ],
     );
   }
@@ -72,6 +90,39 @@ class HeroExample extends StatelessWidget {
         ),
       ),
     ));
+  }
+
+  void _flutterLogoPage(BuildContext context) {
+    Navigator.of(context)
+        .push(MaterialPageRoute<void>(builder: (BuildContext context) {
+      return Scaffold(
+        appBar: AppBar(title: const Text("Flutter Logo horizontal")),
+        body: Center(
+          child: Hero(
+            tag: "hero-flutter",
+            child: Container(
+              width: 200,
+              height: 200,
+              color: Colors.orange[100],
+              child: const FlutterLogo(
+                  size: 100, style: FlutterLogoStyle.horizontal),
+            ),
+          ),
+        ),
+      );
+    }));
+  }
+
+  void _flutterLogoPage2(BuildContext context) {
+    Navigator.of(context)
+        .push(MaterialPageRoute<void>(builder: (BuildContext context) {
+      return Scaffold(
+        appBar: AppBar(title: const Text("Flutter Logo 2")),
+        body: const Center(
+          child: FlutterLogo(size: 150, style: FlutterLogoStyle.stacked),
+        ),
+      );
+    }));
   }
 }
 
