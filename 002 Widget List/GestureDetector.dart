@@ -26,6 +26,7 @@ class _AppBodyState extends State<AppBody> {
   bool lightOn = false;
   Color _color = Colors.blue;
   bool dTap = false;
+  bool _longPress = false;
   @override
   Widget build(BuildContext context) {
     return GridView.count(
@@ -104,6 +105,35 @@ class _AppBodyState extends State<AppBody> {
                     padding: const EdgeInsets.all(10),
                     color: Colors.green,
                     child: Text(dTap ? "Double Tap Off" : "Double Tap On"),
+                  ),
+                ),
+              ]),
+        ),
+//------------> gesture detector onLongPress        
+                Container(
+          color: _longPress ? Colors.pink[100] : Colors.orange[100],
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                const Text("Gesture onDobleTap"),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Icon(
+                    Icons.lightbulb_outline_sharp,
+                    color: _longPress ? Colors.pink : Colors.orange,
+                    size: 60,
+                  ),
+                ),
+                GestureDetector(
+                  onLongPress: () {
+                    setState(() {
+                      _longPress = !_longPress;
+                    });
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(10),
+                    color: Colors.pink,
+                    child: Text(_longPress ? "onLonpPress On" : "onLonpPress Off"),
                   ),
                 ),
               ]),
