@@ -2,7 +2,8 @@ List and Code samples for widgets...
 Widget Library: https://api.flutter.dev/flutter/widgets/widgets-library.html    
 
 
-inprogress: https://docs.flutter.dev/reference/widgets
+inprogress: https://docs.flutter.dev/reference/widgets   
+inprogress: https://medium.com/flutter/learning-flutters-new-navigation-and-routing-system-7c9068155ade
 
 
 look later: https://api.flutter.dev/flutter/widgets/BuildContext-class.html    
