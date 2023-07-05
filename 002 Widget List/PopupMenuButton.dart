@@ -33,6 +33,14 @@ class _PopupMenuDemoState extends State<PopupMenuDemo> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         PopupMenuButton<SampleItem>(
+          color: Colors.red[100],
+          elevation: 16,
+          icon: const Icon(Icons.menu_book),
+          iconSize: 40,
+          tooltip: "Select a color",
+          surfaceTintColor: Colors.purple,
+          splashRadius: 50,
+          shadowColor: Colors.purple,
           initialValue: selectedMenu,
           onSelected: (SampleItem item) {
             setState(() {
