@@ -15,12 +15,14 @@ class NavigationBarApp extends StatelessWidget {
 
 class NavigationBarDemo extends StatefulWidget {
   const NavigationBarDemo({super.key});
+
   @override
   State<NavigationBarDemo> createState() => _NavigationBarDemoState();
 }
 
 class _NavigationBarDemoState extends State<NavigationBarDemo> {
   int currentPageIndex = 0;
+
   @override
   Widget build(context) {
     return Scaffold(
@@ -43,6 +45,10 @@ class _NavigationBarDemoState extends State<NavigationBarDemo> {
         ),
       ][currentPageIndex],
       bottomNavigationBar: NavigationBar(
+        height: 60,
+        elevation: 32,
+        shadowColor: Colors.amber,
+        indicatorColor: Colors.teal[200],
         onDestinationSelected: (int index) {
           setState(() {
             currentPageIndex = index;
@@ -51,10 +57,16 @@ class _NavigationBarDemoState extends State<NavigationBarDemo> {
         selectedIndex: currentPageIndex,
         destinations: const <Widget>[
           NavigationDestination(
+            selectedIcon: Icon(
+              Icons.travel_explore_outlined,
+            ),
             icon: Icon(Icons.explore),
             label: "Explore",
           ),
           NavigationDestination(
+            selectedIcon: Icon(
+              Icons.directions_railway_outlined,
+            ),
             icon: Icon(Icons.commute),
             label: "Commute",
           ),
