@@ -16,9 +16,10 @@ class Home extends StatelessWidget {
     final Controller c = Get.put(Controller());
     return Scaffold(
       appBar: AppBar(
-          title: Center(
-        child: Obx(() => Text("Clicks: ${c.count}")),
-      )),
+        title: Center(
+          child: Obx(() => Text("Clicks: ${c.count}")),
+        ),
+      ),
       body: Center(
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
