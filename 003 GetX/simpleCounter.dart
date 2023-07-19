@@ -40,6 +40,11 @@ class Home extends StatelessWidget {
               ),
             ],
           ),
+          const SizedBox(height: 30),
+          ElevatedButton(
+            child: const Text("Logın Page"),
+            onPressed: ()=> Get.off(Login()),
+          ),
         ],
       )),
       floatingActionButton: FloatingActionButton(
@@ -79,9 +84,25 @@ class Other extends StatelessWidget {
               ),
             ],
           ),
+          const SizedBox(height: 20),
+          Obx(() => Text("${c.count} * 2 = ${c.count * 2}")),
+          Obx(()=> Text("${c.count} * 3 = ${c.count * 3}"))
         ],
       )),
       floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.home),
+        onPressed: () => Get.back(),
+      ),
+    );
+  }
+}
+class Login extends StatelessWidget{
+  @override
+  Widget build(context){
+    return Scaffold(
+appBar: AppBar(title:const Center(child:Text("LogIn"))),
+body: const Center(child: Text("LogIn Page")),
+floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.home),
         onPressed: () => Get.to(Home()),
       ),
