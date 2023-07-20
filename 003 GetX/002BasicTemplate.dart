@@ -1,40 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-void main()=> runApp(const MyApp());
-class MyApp extends StatelessWidget{
-  const MyApp({super.key});
-  @override
-  Widget build(BuildContext context){
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          title:const Center(child:Text("Demo App")),
-          actions: [
-            const SizedBox(width:20),
-            IconButton(
-              tooltip: "Settings",
-              icon: Icon(Icons.settings_outlined,),
-              onPressed: (){},
-            ),
-            IconButton(
-              tooltip:"Theme",
-              icon: Icon(Icons.question_mark_outlined,),
-              onPressed: (){print("set the theme");},
-            ),
-          ],
-        ),
-        body: const Center(child: DemoApp()),
-      ),
-    );
-  }
-}
-class DemoApp extends StatelessWidget{
-  const DemoApp({super.key});
-  @override
-  Widget build(BuildContext context){
-    return Container(
 
+void main() =>
+    runApp(GetMaterialApp(debugShowCheckedModeBanner: false, home: Home()));
+
+class Controller extends GetxController {
+  bool isDark = false;
+}
+
+class Home extends StatelessWidget {
+  @override
+  Widget build(context) {
+    Controller c = Get.put(Controller());
+    return Scaffold(
+      appBar: AppBar(
+        title: const Center(child: Text("Change Theme")),
+        actions: [
+          IconButton(
+            tooltip: "Settings",
+            icon: const Icon(
+              Icons.settings_outlined,
+            ),
+            onPressed: () {},
+          ),
+          IconButton(
+            tooltip: "Theme",
+            onPressed: () {
+              Get.changeTheme(
+                  Get.isDarkMode ? ThemeData.light() : ThemeData.dark());
+            },
+            icon: const Icon(
+              Icons.model_training_outlined,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
