@@ -8,6 +8,7 @@ class Controller extends GetxController {
   var count = 0.obs;
   increment() => count++;
   decrement() => count--;
+    reset() => count.value = 0;
 }
 
 class Home extends StatelessWidget {
@@ -37,6 +38,11 @@ class Home extends StatelessWidget {
               ElevatedButton(
                 child: const Icon(Icons.remove),
                 onPressed: c.decrement,
+              ),
+                const SizedBox(width: 30),
+              ElevatedButton(
+                child: const Text("Reset"),
+                onPressed: c.reset,
               ),
             ],
           ),
