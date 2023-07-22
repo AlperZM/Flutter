@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:reference/conrols.dart';
+import 'controls.dart';
+import 'home.dart';
 
 void main() => runApp(
       GetMaterialApp(
@@ -57,7 +58,7 @@ class LogIn extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                   child: TextField(
-                    controller: c._controller,
+                    controller: c.cont,
                     decoration: const InputDecoration(
                       border: UnderlineInputBorder(),
                       labelText: 'Enter your username',
