@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'home.dart';
 
 class Controller extends GetxController {
+
   // ---->> Login Page Controllers
   var userName = "User".obs;
-  TextEditingController _controller = TextEditingController();
+  TextEditingController cont = TextEditingController();
   changeUserName(String val) {
     userName.value = val;
     val = "";
-    _controller.clear();
+    cont.clear();
+    Get.toNamed("/home.dart");
   }
   // ----> end of the login page controllers
 }
