@@ -1,19 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'controls.dart';
+import 'drawer.dart';
 
-void main() => runApp(
-      GetMaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: const Home(),
-      ),//GetMaterialApp
-    );
-
-class Home extends StatelessWidget{
+class Home extends StatelessWidget {
   const Home({super.key});
   @override
-  Widget build(context){
-    final Controller c = Get.put(Controller());
+  Widget build(context) {
+    final Controller c = Get.find();
     return Scaffold(
       appBar: AppBar(
         title: Center(child: Obx(() => Text("Home: ${c.userName}"))),
@@ -26,13 +20,12 @@ class Home extends StatelessWidget{
             },
             icon: const Icon(
               Icons.model_training_outlined,
-            ),//Icon
-          ),// IconButton
+            ), //Icon
+          ), // IconButton
         ],
       ),
-    body: Center(child: Column(
-      
-    )),
+      body: Center(child: Column()),
+      drawer: AppDrawer(),
     );
   }
 }
