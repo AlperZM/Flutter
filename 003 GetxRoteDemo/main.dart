@@ -1,13 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'controls.dart';
-import 'home.dart';
+import "home.dart";
+import 'settings.dart';
 
 void main() => runApp(
       GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        home: const LogIn(),
-      ),//GetMaterialApp
+        initialRoute: "/",
+        getPages: [
+          GetPage(name: "/", page: () => LogIn()),
+          GetPage(name: "/home", page: () => Home()),
+          GetPage(
+              name: "/settings",
+              page: () => Settings(),
+              transition: Transition.zoom),
+        ],
+      ), //GetMaterialApp
     );
 
 class LogIn extends StatelessWidget {
@@ -27,8 +36,8 @@ class LogIn extends StatelessWidget {
             },
             icon: const Icon(
               Icons.model_training_outlined,
-            ),//Icon
-          ),// IconButton
+            ), //Icon
+          ), // IconButton
         ],
       ),
       body: Center(
@@ -43,9 +52,9 @@ class LogIn extends StatelessWidget {
               border: Border.all(
                 width: 1,
                 color: Theme.of(context).colorScheme.secondary,
-              ),// Border.all
+              ), // Border.all
               borderRadius: BorderRadius.circular(5),
-            ),//BoxDecoration
+            ), //BoxDecoration
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -62,15 +71,15 @@ class LogIn extends StatelessWidget {
                     decoration: const InputDecoration(
                       border: UnderlineInputBorder(),
                       labelText: 'Enter your username',
-                    ),// InputDecoration
+                    ), // InputDecoration
                     onSubmitted: c.changeUserName,
-                  ),// TextField
-                ),// Padding
+                  ), // TextField
+                ), // Padding
               ],
-            ),// Column
-          ),// Container
-        ),//Card
-      ),// Center
-    );// Scaffold
+            ), // Column
+          ), // Container
+        ), //Card
+      ), // Center
+    ); // Scaffold
   }
 }
