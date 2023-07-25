@@ -8,5 +8,6 @@
   <li>BottomSheets</li>
 </ol>
 <b>
-  https://z7f406s07f50.zapp.page/#/
+https://z72606jj7270.zapp.page/#/
 </b>
+<p>First login page and ender user name, than got to home page and open drawer choose settings and set theme</p>
