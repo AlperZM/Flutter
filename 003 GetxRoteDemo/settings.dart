@@ -21,7 +21,7 @@ class Settings extends StatelessWidget {
             ), //Icon
           ), // IconButton
         ],
-      ),
+      ),//AppBar
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -32,14 +32,16 @@ class Settings extends StatelessWidget {
                 const Text("Change Theme: "),
                 const SizedBox(width: 20),
                 IconButton(
-                  icon: c.settingsChangeThemeIcon,
-                  onPressed: () => c.settingsChangeTheme,
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
+                  icon: Obx(() => c.settingsChangeThemeIcon.value),
+                  onPressed: () {
+                    c.settingsChangeTheme();
+                  },
+                ),//IconButton
+              ],//Widget
+            ),//Row
+          ],//Widget 
+        ),//Column
+      ),//Center
+    );//Scaffold
   }
 }
