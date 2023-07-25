@@ -13,12 +13,8 @@ class Settings extends StatelessWidget {
           IconButton(
             tooltip: "Theme",
             onPressed: () {
-              Get.changeTheme(
-                  Get.isDarkMode ? ThemeData.light() : ThemeData.dark());
-            },
-            icon: const Icon(
-              Icons.model_training_outlined,
-            ), //Icon
+               c.settingsChangeTheme();},
+            icon: Obx(() => c.settingsChangeThemeIcon.value), //Icon
           ), // IconButton
         ],
       ),//AppBar
