@@ -1,31 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'controls.dart';
-import 'drawer.dart';
 
-class Home extends StatelessWidget {
-  const Home({super.key});
-  @override
-  Widget build(context) {
-    final Controller c = Get.find();
-    return Scaffold(
-      appBar: AppBar(
-        title: Center(child: Obx(() => Text("Home: ${c.userName}"))),
-        actions: [
-          IconButton(
-            tooltip: "Theme",
-            onPressed: () {
-              Get.changeTheme(
-                  Get.isDarkMode ? ThemeData.light() : ThemeData.dark());
-            },
-            icon: const Icon(
-              Icons.model_training_outlined,
-            ), //Icon
-          ), // IconButton
-        ],
-      ),
-      body: Center(child: Column()),
-      drawer: AppDrawer(),
-    );
+class Controller extends GetxController {
+  // ---->> Login Page Controllers
+  var userName = "User".obs;
+  TextEditingController cont = TextEditingController();
+  changeUserName(String val) {
+    userName.value = val;
+    val = "";
+    cont.clear();
+    Get.back();
+    Get.toNamed("/home");
+  }
+
+  //-----> Drawer Controller
+  late var userAvatarText = userName.value.toUpperCase().substring(0, 1);
+  var userEmail = "exm@example.com".obs;
+// ------> Drawer
+
+// --------> Settings
+  var settingsChangeThemeIcon = Icon(Icons.dark_mode).obs;
+  void settingsChangeTheme() {
+    Get.changeTheme(Get.isDarkMode ? ThemeData.light() : ThemeData.dark());
+    print("done");
   }
 }
