@@ -7,7 +7,6 @@ import 'settings.dart';
 void main() => runApp(
       GetMaterialApp(
         debugShowCheckedModeBanner: false,
-// ----> Set the route
         initialRoute: "/",
         getPages: [
           GetPage(name: "/", page: () => LogIn()),
@@ -17,7 +16,6 @@ void main() => runApp(
               page: () => Settings(),
               transition: Transition.zoom),
         ],
-// ---> End of the route
       ), //GetMaterialApp
     );
 
@@ -33,12 +31,8 @@ class LogIn extends StatelessWidget {
           IconButton(
             tooltip: "Theme",
             onPressed: () {
-              Get.changeTheme(
-                  Get.isDarkMode ? ThemeData.light() : ThemeData.dark());
-            },
-            icon: const Icon(
-              Icons.model_training_outlined,
-            ), //Icon
+              c.settingsChangeTheme();},
+            icon:Obx(() => c.settingsChangeThemeIcon.value), //Icon
           ), // IconButton
         ],
       ),
