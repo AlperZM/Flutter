@@ -19,9 +19,14 @@ class Controller extends GetxController {
 // ------> Drawer
 
 // --------> Settings
-  var settingsChangeThemeIcon = Icon(Icons.dark_mode).obs;
+ var settingsChangeThemeIcon = 
+ Icon(Icons.dark_mode).obs;
+  bool isDark = false;
   void settingsChangeTheme() {
     Get.changeTheme(Get.isDarkMode ? ThemeData.light() : ThemeData.dark());
-    print("done");
-  }
+    isDark = !isDark;
+    settingsChangeThemeIcon.value = isDark ?
+    Icon(Icons.light_mode) :
+    Icon(Icons.dark_mode);
+    }
 }
