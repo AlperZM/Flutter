@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'controls.dart';
 import 'drawer.dart';
-
+//After login screen
 class Home extends StatelessWidget {
   const Home({super.key});
   @override
