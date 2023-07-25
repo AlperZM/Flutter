@@ -5,7 +5,7 @@ import 'controls.dart';
 class AppDrawer extends StatelessWidget {
   @override
   Widget build(context) {
-    final Controller c = Get.put(Controller());
+    final Controller c = Get.find();
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
