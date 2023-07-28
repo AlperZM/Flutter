@@ -65,5 +65,65 @@ BlocProvider.of<BlocA>(context)
   child: ChildA(),
 )
 
+// Listens and responses any change for state 
+  BlocListener<BlocA, BlocAState>(
+  listener: (context, state) {
+    // do stuff here based on BlocA's state
+  },
+  child: Container(),
+)
+
+
+  MultiBlocListener(
+  listeners: [
+    BlocListener<BlocA, BlocAState>(
+      listener: (context, state) {},
+    ),
+    BlocListener<BlocB, BlocBState>(
+      listener: (context, state) {},
+    ),
+    BlocListener<BlocC, BlocCState>(
+      listener: (context, state) {},
+    ),
+  ],
+  child: ChildA(),
+)
+
+
+  //listens and build Widget
+  BlocConsumer<BlocA, BlocAState>(
+  listener: (context, state) {
+    // do stuff here based on BlocA's state
+  },
+  builder: (context, state) {
+    // return widget here based on BlocA's state
+  }
+)
+
+
+  //creates a repo 
+  RepositoryProvider(
+  create: (context) => RepositoryA(),
+  child: ChildA(),
+);
+// with extensions
+context.read<RepositoryA>();
+
+// without extensions
+RepositoryProvider.of<RepositoryA>(context)
+MultiRepositoryProvider(
+  providers: [
+    RepositoryProvider<RepositoryA>(
+      create: (context) => RepositoryA(),
+    ),
+    RepositoryProvider<RepositoryB>(
+      create: (context) => RepositoryB(),
+    ),
+    RepositoryProvider<RepositoryC>(
+      create: (context) => RepositoryC(),
+    ),
+  ],
+  child: ChildA(),
+)
 
   
