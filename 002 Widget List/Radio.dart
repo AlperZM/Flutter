@@ -56,6 +56,7 @@ class _InputRadioDemoState extends State<InputRadioDemo> {
                   ListTile(
                     leading: Radio<MainDrinks>(
                         value: MainDrinks.tea,
+                        activeColor: Colors.teal,
                         groupValue: _mainDrinks,
                         onChanged: (MainDrinks? value) {
                           setState(() {
@@ -67,6 +68,7 @@ class _InputRadioDemoState extends State<InputRadioDemo> {
                   ListTile(
                     leading: Radio<MainDrinks>(
                         value: MainDrinks.coffee,
+                        activeColor: Colors.brown,
                         groupValue: _mainDrinks,
                         onChanged: (MainDrinks? value) {
                           setState(
@@ -78,6 +80,7 @@ class _InputRadioDemoState extends State<InputRadioDemo> {
                   ListTile(
                     leading: Radio<MainDrinks>(
                       value: MainDrinks.soda,
+                      activeColor: Colors.orange,
                       groupValue: _mainDrinks,
                       onChanged: (MainDrinks? value) {
                         setState(
@@ -130,6 +133,15 @@ class _InputRadioDemoState extends State<InputRadioDemo> {
                 children: <Widget>[
                   ListTile(
                     leading: Radio<Flavours>(
+                        fillColor: MaterialStateProperty.resolveWith<Color>(
+                            (Set<MaterialState> states) {
+                          if (states.contains(MaterialState.disabled)) {
+                            return Colors.red;
+                          } else if (states.contains(MaterialState.hovered)) {
+                            return Colors.green;
+                          }
+                          return Colors.orange;
+                        }),
                         value: Flavours.sugar,
                         groupValue: _flavour,
                         onChanged: (Flavours? value) {
@@ -141,6 +153,7 @@ class _InputRadioDemoState extends State<InputRadioDemo> {
                   ),
                   ListTile(
                     leading: Radio<Flavours>(
+                        focusColor: Colors.cyan,
                         value: Flavours.milk,
                         groupValue: _flavour,
                         onChanged: (Flavours? value) {
@@ -152,6 +165,7 @@ class _InputRadioDemoState extends State<InputRadioDemo> {
                   ),
                   ListTile(
                     leading: Radio<Flavours>(
+                        toggleable: true,
                         value: Flavours.ice,
                         groupValue: _flavour,
                         onChanged: (Flavours? value) {
