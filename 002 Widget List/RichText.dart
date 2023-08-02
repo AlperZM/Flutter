@@ -27,11 +27,20 @@ class RichTextBody extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Container(
-          width: 200,
-          height: 200,
-          color: Colors.grey[100],
-          padding: const EdgeInsets.all(20),
+          width: 300,
+          height: 300,
+          decoration: BoxDecoration(
+            color: Colors.amber[400],
+            border: Border.all(width: 1),
+            borderRadius: BorderRadius.circular(5),
+          ),
+          padding: const EdgeInsets.all(10),
           child: RichText(
+            maxLines: 3,
+            selectionColor: Colors.red,
+            softWrap: true,
+            textAlign: TextAlign.center,
+            textScaleFactor: 1.5,
             text: TextSpan(
               text: "RichText ",
               style: DefaultTextStyle.of(context).style,
