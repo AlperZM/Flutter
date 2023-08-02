@@ -16,6 +16,7 @@ look later: https://api.flutter.dev/flutter/widgets/ImplicitlyAnimatedWidget-cla
 look later: https://api.flutter.dev/flutter/widgets/Builder-class.html  
 look later: https://api.flutter.dev/flutter/widgets/MediaQuery-class.html   
 look later: https://api.flutter.dev/flutter/material/MaterialApp-class.html   
-look later: https://api.flutter.dev/flutter/widgets/Offstage-class.html
+look later: https://api.flutter.dev/flutter/widgets/Offstage-class.html   
+look later: https://api.flutter.dev/flutter/widgets/ScrollConfiguration-class.html
 
 theme: https://api.flutter.dev/flutter/material/ThemeData-class.html
