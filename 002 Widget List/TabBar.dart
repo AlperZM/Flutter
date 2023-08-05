@@ -23,15 +23,23 @@ class TabBarDemo extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('TabBar Sample'),
-          bottom: const TabBar(
-            tabs: <Widget>[
+          bottom: TabBar(
+            indicator: BoxDecoration(
+            border: Border.all(width:1),
+            borderRadius: BorderRadius.circular(5),
+            ),
+            indicatorPadding: const EdgeInsets.all(8),
+            indicatorSize: TabBarIndicatorSize.tab,
+           
+            dividerColor: Colors.black,
+            tabs:const <Widget>[
               Tab(text: "Blue"),
               Tab(text: "Green"),
               Tab(text: "Red"),
             ],
           ),
         ),
-        body: TabBarView(
+        body: TabBarView(          
           children: <Widget>[
             Container(color: Colors.blue),
             Container(color: Colors.green),
