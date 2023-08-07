@@ -26,7 +26,6 @@ class TextFieldExample extends StatefulWidget {
 
 class _TextFieldExampleState extends State<TextFieldExample> {
   late TextEditingController _controller;
-  String placeHolder = "Some String";
   @override
   void initState() {
     super.initState();
@@ -43,7 +42,7 @@ class _TextFieldExampleState extends State<TextFieldExample> {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        width: 200,
+        width: 300,
         height: 200,
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
@@ -68,9 +67,10 @@ class _TextFieldExampleState extends State<TextFieldExample> {
             ),
             buildCounter: counter,
             controller: _controller,
-            onSubmitted: (String? value) {
+            onSubmitted: (String value) {
               setState(() {
                 print(value);
+                _controller.clear();
               });
             },
           ),
