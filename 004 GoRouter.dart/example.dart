@@ -3,8 +3,13 @@ import 'package:go_router/go_router.dart';
 
 void main() => runApp(const GoRouterApp());
 final GoRouter _router = GoRouter(
-  initialLocation: "/",
+  initialLocation: "/login",
   routes: <RouteBase>[
+    GoRoute(
+      name: "login",
+      path: "/login",
+      builder: (context, state) => Login(),
+    ),
     GoRoute(
       name: "home",
       path: "/",
@@ -36,6 +41,74 @@ class GoRouterApp extends StatelessWidget {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       routerConfig: _router,
+    );
+  }
+}
+
+class Login extends StatelessWidget {
+  Login({super.key});
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKey2 = GlobalKey<FormState>();
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Center(child: Text("Login"))),
+      body: Center(
+          child: Container(
+        width: 300,
+        height: 300,
+        padding: const EdgeInsets.all(8),
+        decoration: BoxDecoration(
+          border: Border.all(width: 1),
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Card(
+          child: Form(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                TextFormField(
+                    key: _formKey,
+                    decoration: const InputDecoration(
+                      hintText: "Enter Your Id",
+                      label: Text("ID Area"),
+                      border: OutlineInputBorder(),
+                    ),
+                    validator: (String? value) {
+                      if (value == null || value.isEmpty) {
+                        return "Please enter some text";
+                      }
+                      return null;
+                    }),
+                const SizedBox(height: 20),
+                TextFormField(
+                    key: _formKey2,
+                    obscureText: true,
+                    enableSuggestions: false,
+                    autocorrect: false,
+                    decoration: const InputDecoration(
+                      hintText: "Enter Your PASSWORD",
+                      label: Text("Password"),
+                      border: OutlineInputBorder(),
+                    ),
+                    validator: (String? value) {
+                      if (value == null || value.isEmpty) {
+                        return "Please enter some text";
+                      }
+                      return null;
+                    }),
+                const SizedBox(height: 20),
+                ElevatedButton(
+                    child: const Text("Submit"),
+                    onPressed: () {
+//                     if (_formKey.currentState!.validate()){}
+                      context.go("/");
+                    }),
+              ],
+            ),
+          ),
+        ),
+      )),
     );
   }
 }
