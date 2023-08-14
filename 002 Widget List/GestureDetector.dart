@@ -133,7 +133,7 @@ class _AppBodyState extends State<AppBody> {
                   child: Container(
                     padding: const EdgeInsets.all(10),
                     color: Colors.pink,
-                    child: Text(_longPress ? "onLonpPress On" : "onLonpPress Off"),
+                    child: Text(_longPress ? "onLongPress On" : "onLongPress Off"),
                   ),
                 ),
               ]),
