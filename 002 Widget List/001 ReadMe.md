@@ -9,8 +9,6 @@ look later: https://api.flutter.dev/flutter/rendering/CustomPainter-class.html
 look later: https://api.flutter.dev/flutter/widgets/GestureDetector-class.html  
 look later: https://api.flutter.dev/flutter/widgets/FutureBuilder-class.html   
 look later: https://api.flutter.dev/flutter/widgets/ImplicitlyAnimatedWidget-class.html   
-look later: https://api.flutter.dev/flutter/widgets/Builder-class.html  
-look later: https://api.flutter.dev/flutter/widgets/MediaQuery-class.html   
 look later: https://api.flutter.dev/flutter/material/MaterialApp-class.html   
 look later: https://api.flutter.dev/flutter/widgets/Offstage-class.html   
 look later: https://api.flutter.dev/flutter/widgets/ScrollConfiguration-class.html    
