@@ -11,8 +11,6 @@ look later: https://api.flutter.dev/flutter/widgets/FutureBuilder-class.html
 look later: https://api.flutter.dev/flutter/widgets/ImplicitlyAnimatedWidget-class.html   
 look later: https://api.flutter.dev/flutter/material/MaterialApp-class.html   
 look later: https://api.flutter.dev/flutter/widgets/Offstage-class.html   
-look later: https://api.flutter.dev/flutter/widgets/ScrollConfiguration-class.html    
 look later: https://api.flutter.dev/flutter/widgets/StreamBuilder-class.html    
-look later: https://api.flutter.dev/flutter/widgets/Overlay-class.html
 
 theme: https://api.flutter.dev/flutter/material/ThemeData-class.html
