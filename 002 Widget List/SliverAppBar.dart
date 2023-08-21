@@ -93,24 +93,69 @@ class SecondPage extends StatelessWidget {
               title: Text('Sliver AppBar -- Secondpage'),
             ),
           ),
-          SliverGrid(
-            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: 200.0,
-              mainAxisSpacing: 10.0,
-              crossAxisSpacing: 10.0,
-              childAspectRatio: 4.0,
+          SliverGrid.count(
+          crossAxisCount: 3,
+          mainAxisSpacing: 10,
+            crossAxisSpacing:10,
+          children: <Widget>[
+            Container(
+              decoration: BoxDecoration(
+              color: Colors.amber,
+                border: Border.all(width:1),
+              ),
+            
+              child: Center(child:ElevatedButton(
+              child: const Text("Home"),
+                onPressed:(){},
+              ),),
             ),
-            delegate: SliverChildBuilderDelegate(
-              (BuildContext context, int index) {
-                return Container(
-                  alignment: Alignment.center,
-                  color: Colors.teal[100 * (index % 9)],
-                  child: Text('Grid Item $index'),
-                );
-              },
-              childCount: 20,
+             Container(
+              decoration: BoxDecoration(
+              color: Colors.amber,
+                border: Border.all(width:1),
+              ),
+            
+              child: Center(child:ElevatedButton(
+              child: const Text("SecondPage"),
+                onPressed:(){},
+              ),),
             ),
+            Container(
+              decoration: BoxDecoration(
+              color: Colors.amber,
+                border: Border.all(width:1),
+              ),
+            
+              child: Center(child:ElevatedButton(
+              child: const Text("Home"),
+                onPressed:(){},
+              ),),
+            ),
+             Container(
+              decoration: BoxDecoration(
+              color: Colors.amber,
+                border: Border.all(width:1),
+              ),
+            
+              child: Center(child:ElevatedButton(
+              child: const Text("SecondPage"),
+                onPressed:(){},
+              ),),
+            ),
+          ],
           ),
+          SliverList(
+    delegate: SliverChildListDelegate(
+      [
+        Container(color: Colors.red, height: 150.0),
+        Container(color: Colors.purple, height: 150.0),
+        Container(color: Colors.green, height: 150.0),
+         Container(color: Colors.cyan, height: 150.0),
+        Container(color: Colors.teal, height: 150.0),
+        Container(color: Colors.amber, height: 150.0),
+      ],
+    ),
+),
           SliverFixedExtentList(
             itemExtent: 50.0,
             delegate: SliverChildBuilderDelegate(
