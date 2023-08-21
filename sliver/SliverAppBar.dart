@@ -1,8 +1,6 @@
-//import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
 void main() => runApp(const SliverAppbar());
-
-bool isDark = false;
 
 class SliverAppbar extends StatefulWidget {
   const SliverAppbar({super.key});
@@ -13,10 +11,9 @@ class SliverAppbar extends StatefulWidget {
 class _SliverAppbarState extends State<SliverAppbar> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: isDark ? ThemeData.dark() : ThemeData.light(),
-      home: const Scaffold(
+      home: Scaffold(
         body: Center(
           child: SliverApp(),
         ),
@@ -35,7 +32,6 @@ class _SliverAppState extends State<SliverApp> {
   bool _pinned = true;
   bool _snap = false;
   bool _floating = false;
-  bool isDark = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,25 +42,6 @@ class _SliverAppState extends State<SliverApp> {
             snap: _snap,
             floating: _floating,
             expandedHeight: 160.0,
-            actions: <Widget>[
-              Center(
-                child: Text(
-                  isDark ? "LIGHT" : "DARK",
-                  style: TextStyle(
-                      fontSize: 20,
-                      color: isDark ? Colors.amberAccent : Colors.black),
-                ),
-              ),
-              const SizedBox(width: 15),
-              Switch(
-                  value: isDark,
-                  activeColor: Colors.amber,
-                  onChanged: (bool value) {
-                    setState(() {
-                      isDark = !isDark;
-                    });
-                  }),
-            ],
             flexibleSpace: const FlexibleSpaceBar(
               title: Text("SliverAppBar"),
               background: FlutterLogo(),
@@ -122,7 +99,6 @@ class _SliverAppState extends State<SliverApp> {
                     onChanged: (bool val) {
                       setState(() {
                         _snap = val;
-                        // Snapping only applies when the app bar is floating.
                         _floating = _floating || _snap;
                       });
                     },
