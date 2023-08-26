@@ -25,15 +25,15 @@ class DocumentScreen extends StatelessWidget {
   final Document document;
   @override
   Widget build(BuildContext context) {
-    final metadataRecord = document.metadata;
+    final (title, :modified) = document.metadata;
     return Scaffold(
       appBar: AppBar(
-        title: Text(metadataRecord.$1),
+        title: Text(title),
       ),
       body: Column(
         children: [
           Center(
-            child: Text('Last Modified: ${metadataRecord.modified}'),
+            child: Text('Last Modified: $modified'),
           ),
         ],
       ),
@@ -44,10 +44,19 @@ class DocumentScreen extends StatelessWidget {
 class Document {
   final Map<String, Object?> _json;
   Document() : _json = jsonDecode(documentJson);
+
   (String, {DateTime modified}) get metadata {
-    const title = "My Document";
-    final now = DateTime.now();
-    return (title, modified: now);
+    if (_json
+        case {
+          'metadata': {
+            'title': String title,
+            'modified': String localModified,
+          }
+        }) {
+      return (title, modified: DateTime.parse(localModified));
+    } else {
+      throw const FormatException('Unexpected JSON');
+    }
   }
 }
 
