@@ -11,12 +11,12 @@ class ImplicitAnimation1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(title: const Center(child: Text("FadeIn"))),
-        body: const FadeInDemo(),
-      ),
-    );
+        debugShowCheckedModeBanner: false,
+//       home: const AnimatedContainerDemo(),
+        routes: {
+          "/": (context) => const FadeInDemo(),
+          "animated": (context) => const AnimatedContainerDemo(),
+        });
   }
 }
 
@@ -34,35 +34,40 @@ class _FadeInDemoState extends State<FadeInDemo> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-    return Row(
-      children: <Widget>[
-        const SideMenu(),
-        Column(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-          Image.network(owlUrl, height: height * 0.6),
-          TextButton(
-            child: const Text(
-              'Show Details',
-              style: TextStyle(color: Colors.blueAccent),
-            ),
-            onPressed: () => {
-              setState(() {
-                click = !click;
-                click ? opacity = 1 : opacity = 0;
-              })
-            },
-          ),
-          AnimatedOpacity(
-              opacity: opacity,
-              duration: const Duration(seconds: 2),
-              child: const Column(
-                children: [
-                  Text('Type: Owl'),
-                  Text('Age: 39'),
-                  Text('Employment: None'),
-                ],
-              ))
-        ])
-      ],
+    return Scaffold(
+      appBar: AppBar(title: const Center(child: Text("FadeIn"))),
+      body: Row(
+        children: <Widget>[
+          const SideMenu(),
+          Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Image.network(owlUrl, height: height * 0.5),
+                TextButton(
+                  child: const Text(
+                    'Show Details',
+                    style: TextStyle(color: Colors.blueAccent),
+                  ),
+                  onPressed: () => {
+                    setState(() {
+                      click = !click;
+                      click ? opacity = 1 : opacity = 0;
+                    })
+                  },
+                ),
+                AnimatedOpacity(
+                    opacity: opacity,
+                    duration: const Duration(seconds: 2),
+                    child: const Column(
+                      children: [
+                        Text('Type: Owl'),
+                        Text('Age: 39'),
+                        Text('Employment: None'),
+                      ],
+                    ))
+              ])
+        ],
+      ),
     );
   }
 }
@@ -88,15 +93,18 @@ class SideMenu extends StatelessWidget {
               Navigator.of(context).pushNamed("/");
             },
           ),
+          const SizedBox(height: 10),
+          TextButton(
+            child: const Text("Random"),
+            onPressed: () {
+              Navigator.of(context).pushNamed("/animated");
+            },
+          ),
         ],
       ),
     );
   }
 }
-
-double randomBorderRadius() => Random().nextDouble() * 64;
-double randomMargin() => Random().nextDouble() * 64;
-Color randomColor() => Color(0xFFFFFFFF & Random().nextInt(0xFFFFFFFF));
 
 class AnimatedContainerDemo extends StatefulWidget {
   const AnimatedContainerDemo({super.key});
@@ -109,6 +117,10 @@ class _AnimatedContainerDemoState extends State<AnimatedContainerDemo> {
   late Color color;
   late double borderRadius;
   late double margin;
+
+  double randomBorderRadius() => Random().nextDouble() * 64;
+  double randomMargin() => Random().nextDouble() * 64;
+  Color randomColor() => Color(0xFFFFFFFF & Random().nextInt(0xFFFFFFFF));
 
   @override
   void initState() {
