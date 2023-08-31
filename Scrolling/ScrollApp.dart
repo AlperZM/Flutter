@@ -132,6 +132,35 @@ class CustomScroll extends StatelessWidget {
   }
 }
 
+class Dragable extends StatelessWidget {
+  const Dragable({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('DraggableScrollableSheet'),
+      ),
+      body: SizedBox.expand(
+        child: DraggableScrollableSheet(
+          builder: (BuildContext context, ScrollController scrollController) {
+            return Container(
+              color: Colors.blue[100],
+              child: ListView.builder(
+                controller: scrollController,
+                itemCount: 25,
+                itemBuilder: (BuildContext context, int index) {
+                  return ListTile(title: Text('Item $index'));
+                },
+              ),
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+
 class SideMenu extends StatelessWidget {
   const SideMenu({super.key});
   @override
@@ -166,6 +195,18 @@ class SideMenu extends StatelessWidget {
                 context,
                 MaterialPageRoute(builder: (context) {
                   return CustomScroll();
+                }),
+              );
+            },
+          ),
+          const SizedBox(height: 10),
+          TextButton(
+            child: const Text("Dragable"),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) {
+                  return const Dragable();
                 }),
               );
             },
