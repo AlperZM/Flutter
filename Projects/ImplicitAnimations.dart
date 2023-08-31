@@ -10,13 +10,10 @@ class ImplicitAnimation1 extends StatelessWidget {
   const ImplicitAnimation1({super.key});
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-//       home: const AnimatedContainerDemo(),
-        routes: {
-          "/": (context) => const FadeInDemo(),
-          "animated": (context) => const AnimatedContainerDemo(),
-        });
+    return MaterialApp(debugShowCheckedModeBanner: false, routes: {
+      "/": (context) => const FadeInDemo(),
+      "animated": (context) => const AnimatedContainerDemo(),
+    });
   }
 }
 
@@ -97,7 +94,12 @@ class SideMenu extends StatelessWidget {
           TextButton(
             child: const Text("Random"),
             onPressed: () {
-              Navigator.of(context).pushNamed("/animated");
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) {
+                  return const AnimatedContainerDemo();
+                }),
+              );
             },
           ),
         ],
