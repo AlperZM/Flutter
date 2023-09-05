@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 
 // set the router
 final _router = GoRouter(
+  initialLocation: '/',
   routes: [
     GoRoute(
       path: "/",
@@ -11,14 +12,29 @@ final _router = GoRouter(
     GoRoute(
       path: "/align",
       builder: (context, state) => const AlignPage(),
+      // child route => ../align/..
       routes: [
         GoRoute(
           path: "fractionalAlign",
+
+          ///align/fractionaleAlign
           builder: (context, state) => const FractionalAlignPage(),
         ),
         GoRoute(
-          path: "alignment",
-          builder: (context, state) => const AlignmentAlignPage(),
+          path: "alignment", //../align/alignment
+          pageBuilder: (context, state) {
+            return CustomTransitionPage(
+                key: state.pageKey,
+                child: const AlignmentAlignPage(),
+                transitionsBuilder:
+                    (context, animation, secondaryAnimation, child) {
+                  return FadeTransition(
+                    opacity: CurveTween(curve: Curves.easeInOutCirc)
+                        .animate(animation),
+                    child: child,
+                  );
+                });
+          },
         ),
       ],
     ),
