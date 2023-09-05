@@ -86,7 +86,7 @@ class AlignPage extends StatelessWidget {
           child: ElevatedButton(
               child: const Text("FractionalAlign Demos Page"),
               onPressed: () {
-                context.go("/fractionalAlign");
+                context.go("/align/fractionalAlign");
               })),
     );
   }
