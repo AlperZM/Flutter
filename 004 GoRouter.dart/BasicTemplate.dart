@@ -8,6 +8,10 @@ final _router = GoRouter(
       path: "/",
       builder: (context, state) => const HomePage(),
     ),
+    GoRoute(
+    path:"/second",
+      builder:(context, state)=> const SecondPage(),
+    ),
   ],
 );
 
@@ -30,6 +34,23 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Center(child: Text("AdaptiveApp"))),
+      body: Center(child:ElevatedButton(
+      child: const Text("Second Page"),
+        onPressed: (){context.go("/second");}
+      )),
+    );
+  }
+}
+class SecondPage extends StatelessWidget {
+  const SecondPage({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Center(child: Text("SecondPage"))),
+      body: Center(child:ElevatedButton(
+      child: const Text("Home Page"),
+        onPressed: (){context.go("/");}
+      )),
     );
   }
 }
