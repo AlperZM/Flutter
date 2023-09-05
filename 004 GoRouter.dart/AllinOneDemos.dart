@@ -78,10 +78,11 @@ class AlignPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
           leading: IconButton(
+            tooltip: "HomePage",
             icon: const Icon(Icons.arrow_back),
             onPressed: () => context.go("/"),
           ),
-          title: const Center(child: Text("SecondPage"))),
+          title: const Center(child: Text("AlingPage"))),
       body: Center(
           child: ElevatedButton(
               child: const Text("FractionalAlign Demos Page"),
@@ -99,6 +100,7 @@ class FractionalAlignPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
           leading: IconButton(
+            tooltip: "AlignPage",
             icon: const Icon(Icons.arrow_back),
             onPressed: () => context.go("/align"),
           ),
@@ -108,6 +110,17 @@ class FractionalAlignPage extends StatelessWidget {
         width: 200,
         height: 200,
         color: Colors.amber,
+            child: const Column(
+            children: <Widget>[
+              Text("FractionalAlignment origin: TOP-LEFT",
+                  style: TextStyle(fontSize:20)),
+              Align(
+            alignment: FractionalOffset(0.6, 0.1),
+              child:FlutterLogo(size:70),
+            ),
+              
+            ],
+            ),
       )),
     );
   }
