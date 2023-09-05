@@ -16,6 +16,10 @@ final _router = GoRouter(
           path: "fractionalAlign",
           builder: (context, state) => const FractionalAlignPage(),
         ),
+        GoRoute(
+          path: "alignment",
+          builder: (context, state) => const AlignmentAlignPage(),
+        ),
       ],
     ),
   ],
@@ -84,11 +88,37 @@ class AlignPage extends StatelessWidget {
           ),
           title: const Center(child: Text("AlingPage"))),
       body: Center(
-          child: ElevatedButton(
-              child: const Text("FractionalAlign Demos Page"),
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          ElevatedButton(
+              child: const Text("FractionalAlign Demo Page"),
               onPressed: () {
                 context.go("/align/fractionalAlign");
-              })),
+              }),
+          const SizedBox(height: 10),
+          ElevatedButton(
+              child: const Text("AlignmentAlign Demo Page"),
+              onPressed: () {
+                context.go("/align/alignment");
+              }),
+          const SizedBox(height: 10),
+          const Text("Alignment: TOP-LEFT"),
+          Container(
+            width: 200,
+            height: 200,
+            color: Colors.amber,
+            child: const Column(
+              children: <Widget>[
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: FlutterLogo(size: 70),
+                ),
+              ],
+            ),
+          ),
+        ],
+      )),
     );
   }
 }
@@ -104,24 +134,66 @@ class FractionalAlignPage extends StatelessWidget {
             icon: const Icon(Icons.arrow_back),
             onPressed: () => context.go("/align"),
           ),
-          title: const Center(child: Text("Align"))),
+          title: const Center(child: Text("FractionalAlign"))),
       body: Center(
-          child: Container(
-        width: 200,
-        height: 200,
-        color: Colors.amber,
+        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          const Text("FractionalAlignment origin: TOP-LEFT",
+              style: TextStyle(fontSize: 20)),
+          const SizedBox(height: 10),
+          Container(
+            width: 200,
+            height: 200,
+            color: Colors.amber,
             child: const Column(
-            children: <Widget>[
-              Text("FractionalAlignment origin: TOP-LEFT",
-                  style: TextStyle(fontSize:20)),
-              Align(
-            alignment: FractionalOffset(0.6, 0.1),
-              child:FlutterLogo(size:70),
+              children: <Widget>[
+                Align(
+                  alignment: FractionalOffset(0.6, 0.1),
+                  child: FlutterLogo(size: 70),
+                ),
+              ],
             ),
-              
-            ],
+          ),
+        ]),
+      ),
+    );
+  }
+}
+
+class AlignmentAlignPage extends StatelessWidget {
+  const AlignmentAlignPage({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+          leading: IconButton(
+            tooltip: "AlignPage",
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () => context.go("/align"),
+          ),
+          title: const Center(child: Text("AlignmentAlign"))),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text("Alignment origin: TOP-LEFT and childs origin:TOP-LEFT",
+                style: TextStyle(fontSize: 20)),
+            const SizedBox(height: 10),
+            Container(
+              width: 200,
+              height: 200,
+              color: Colors.amber,
+              child: const Column(
+                children: <Widget>[
+                  Align(
+                    alignment: Alignment(0.6, 0.1),
+                    child: FlutterLogo(size: 70),
+                  ),
+                ],
+              ),
             ),
-      )),
+          ],
+        ),
+      ),
     );
   }
 }
